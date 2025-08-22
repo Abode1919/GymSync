@@ -264,6 +264,14 @@
             border-color: #ef4444;
             background-color: #fef2f2;
         }
+        .calorie-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -292,6 +300,9 @@
                     </button>
                     <button onclick="showPage('profile')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-user mr-2"></i>Profile
+                    </button>
+                    <button onclick="showPage('calories')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-calculator mr-2"></i>Calories
                     </button>
                     <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
                         <button onclick="toggleUnits()" class="unit-toggle bg-gray-100 hover:bg-emerald-100 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
@@ -335,6 +346,9 @@
                     <button onclick="showPage('profile'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
                         <i class="fas fa-user mr-3"></i>Profile
                     </button>
+                    <button onclick="showPage('calories'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
+                        <i class="fas fa-calculator mr-3"></i>Calories
+                    </button>
                     <div class="border-t border-gray-200 pt-4 mt-4">
                         <button onclick="toggleUnits()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
                             <i class="fas fa-exchange-alt mr-3"></i>Units: <span id="mobileUnitDisplay">Imperial</span>
@@ -370,7 +384,7 @@
             <!-- Today's Summary -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Today's Summary</h2>
-                <div id="todaySummary" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div id="todaySummary" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <!-- Summary cards will be populated by JavaScript -->
                 </div>
             </div>
@@ -463,7 +477,7 @@
             </div>
 
             <!-- Statistics Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover-lift">
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
@@ -508,6 +522,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover-lift">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-burn text-yellow-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Calories Burned</p>
+                            <p id="totalCalories" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Charts -->
@@ -516,6 +541,176 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-4">Strength Progression</h3>
                     <div class="chart-container">
                         <canvas id="strengthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calories Page -->
+        <div id="caloriesPage" class="page hidden fade-in">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Calorie Calculator</h1>
+                <p class="text-gray-600">Calculate your daily calorie needs for cutting, maintaining, or bulking</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Calculator Form -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">Your Information</h2>
+                    <form onsubmit="calculateCalorieNeeds(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                                <input type="number" id="calcAge" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="25" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                <select id="calcGender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Height (<span class="height-unit">inches</span>)</label>
+                                <input type="number" id="calcHeight" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="70" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Weight (<span class="weight-unit">lbs</span>)</label>
+                                <input type="number" id="calcWeight" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="180" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Activity Level</label>
+                                <select id="calcActivityLevel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <option value="1.2">Sedentary (desk job, no exercise)</option>
+                                    <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
+                                    <option value="1.55" selected>Moderately active (moderate exercise 3-5 days/week)</option>
+                                    <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                                    <option value="1.9">Extremely active (very hard exercise, physical job)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4 pt-4">
+                            <button type="button" onclick="loadProfileData()" class="flex-1 bg-gray-100 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                <i class="fas fa-user mr-2"></i>Use Profile Data
+                            </button>
+                            <button type="submit" class="flex-1 accent-gradient text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                                <i class="fas fa-calculator mr-2"></i>Calculate
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Results -->
+                <div class="space-y-6">
+                    <!-- BMR & TDEE Results -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Your Metabolic Rate</h3>
+                        <div id="metabolicResults" class="hidden space-y-4">
+                            <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg">
+                                <div>
+                                    <div class="font-semibold text-blue-900">BMR (Base Metabolic Rate)</div>
+                                    <div class="text-sm text-blue-700">Calories burned at rest</div>
+                                </div>
+                                <div class="text-2xl font-bold text-blue-600" id="bmrDisplay">0</div>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-emerald-50 rounded-lg">
+                                <div>
+                                    <div class="font-semibold text-emerald-900">TDEE (Total Daily Energy)</div>
+                                    <div class="text-sm text-emerald-700">Calories needed to maintain weight</div>
+                                </div>
+                                <div class="text-2xl font-bold text-emerald-600" id="tdeeDisplay">0</div>
+                            </div>
+                        </div>
+                        <div id="metabolicPlaceholder" class="text-center py-8 text-gray-500">
+                            <i class="fas fa-calculator text-4xl mb-4"></i>
+                            <p>Enter your information and calculate to see your metabolic rate</p>
+                        </div>
+                    </div>
+
+                    <!-- Goal-Based Calorie Recommendations -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Calorie Goals</h3>
+                        <div id="calorieGoals" class="hidden space-y-4">
+                            <!-- Cutting -->
+                            <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-cut text-red-600"></i>
+                                        <span class="font-semibold text-red-900">Cutting (Fat Loss)</span>
+                                    </div>
+                                    <div class="text-xl font-bold text-red-600" id="cuttingCalories">0</div>
+                                </div>
+                                <div class="text-sm text-red-700">500-750 calorie deficit for 1-1.5 lbs/week loss</div>
+                                <div class="mt-2 text-xs text-red-600">
+                                    <span id="cuttingRange"></span>
+                                </div>
+                            </div>
+
+                            <!-- Maintaining -->
+                            <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-balance-scale text-emerald-600"></i>
+                                        <span class="font-semibold text-emerald-900">Maintaining</span>
+                                    </div>
+                                    <div class="text-xl font-bold text-emerald-600" id="maintainCalories">0</div>
+                                </div>
+                                <div class="text-sm text-emerald-700">Maintain current weight</div>
+                            </div>
+
+                            <!-- Bulking -->
+                            <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-arrow-up text-blue-600"></i>
+                                        <span class="font-semibold text-blue-900">Bulking (Muscle Gain)</span>
+                                    </div>
+                                    <div class="text-xl font-bold text-blue-600" id="bulkingCalories">0</div>
+                                </div>
+                                <div class="text-sm text-blue-700">300-500 calorie surplus for lean muscle gain</div>
+                                <div class="mt-2 text-xs text-blue-600">
+                                    <span id="bulkingRange"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="goalsPlaceholder" class="text-center py-8 text-gray-500">
+                            <i class="fas fa-bullseye text-4xl mb-4"></i>
+                            <p>Calculate your TDEE to see personalized calorie goals</p>
+                        </div>
+                    </div>
+
+                    <!-- Macronutrient Breakdown -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Macronutrient Guidelines</h3>
+                        <div id="macroBreakdown" class="hidden space-y-4">
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center p-4 bg-red-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-red-600" id="proteinGrams">0g</div>
+                                    <div class="text-sm text-red-700">Protein</div>
+                                    <div class="text-xs text-red-600" id="proteinCals">0 cal</div>
+                                </div>
+                                <div class="text-center p-4 bg-yellow-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-yellow-600" id="fatGrams">0g</div>
+                                    <div class="text-sm text-yellow-700">Fats</div>
+                                    <div class="text-xs text-yellow-600" id="fatCals">0 cal</div>
+                                </div>
+                                <div class="text-center p-4 bg-green-50 rounded-lg">
+                                    <div class="text-2xl font-bold text-green-600" id="carbGrams">0g</div>
+                                    <div class="text-sm text-green-700">Carbs</div>
+                                    <div class="text-xs text-green-600" id="carbCals">0 cal</div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-gray-600 text-center">
+                                Based on: 1g protein per lb bodyweight, 0.3g fat per lb, remaining calories from carbs
+                            </div>
+                        </div>
+                        <div id="macroPlaceholder" class="text-center py-8 text-gray-500">
+                            <i class="fas fa-chart-pie text-4xl mb-4"></i>
+                            <p>Macro breakdown will appear after calculating your calorie needs</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -540,12 +735,8 @@
                                     <input type="text" id="profileName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="Your Name">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Height (<span class="height-unit">inches</span>)</label>
-                                    <input type="number" id="profileHeight" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="70">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Weight (<span class="weight-unit">lbs</span>)</label>
-                                    <input type="number" id="profileWeight" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="180">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                                    <input type="number" id="profileAge" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="25">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
@@ -555,6 +746,14 @@
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
                                     </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Height (<span class="height-unit">inches</span>)</label>
+                                    <input type="number" id="profileHeight" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="70">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Weight (<span class="weight-unit">lbs</span>)</label>
+                                    <input type="number" id="profileWeight" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="180">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Training Frequency (days/week)</label>
@@ -567,6 +766,16 @@
                                         <option value="5">5 days</option>
                                         <option value="6">6 days</option>
                                         <option value="7">7 days</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Activity Level</label>
+                                    <select id="activityLevel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                                        <option value="1.2">Sedentary (desk job, no exercise)</option>
+                                        <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
+                                        <option value="1.55" selected>Moderately active (moderate exercise 3-5 days/week)</option>
+                                        <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                                        <option value="1.9">Extremely active (very hard exercise, physical job)</option>
                                     </select>
                                 </div>
                             </div>
@@ -585,7 +794,7 @@
                     </div>
                 </div>
 
-                <!-- Activity Summary & Achievements -->
+                <!-- Activity Summary & Calorie Calculator -->
                 <div class="space-y-8">
                     <!-- Activity Summary -->
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -600,9 +809,24 @@
                                 <span id="monthlySets" class="font-semibold text-gray-900">0</span>
                             </div>
                             <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Calories Burned</span>
+                                <span id="monthlyCalories" class="font-semibold text-orange-600">0</span>
+                            </div>
+                            <div class="flex justify-between items-center">
                                 <span class="text-gray-600">Average per Week</span>
                                 <span id="weeklyAverage" class="font-semibold text-gray-900">0</span>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Link to Calorie Calculator -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Calorie Calculator</h3>
+                        <div class="space-y-4">
+                            <p class="text-gray-600 text-sm">Calculate your daily calorie needs for cutting, maintaining, or bulking</p>
+                            <button onclick="showPage('calories')" class="w-full accent-gradient text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                                <i class="fas fa-calculator mr-2"></i>Open Calorie Calculator
+                            </button>
                         </div>
                     </div>
 
@@ -731,6 +955,9 @@
                 <div class="w-full bg-gray-200 rounded-full h-3">
                     <div id="progressBar" class="accent-gradient h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
                 </div>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-xs text-gray-600">Estimated calories: <span id="workoutCalorieEstimate" class="calorie-badge">0</span></span>
+                </div>
             </div>
 
             <!-- Current Exercise -->
@@ -806,6 +1033,204 @@
         let currentExerciseIndex = 0;
         let currentSetIndex = 0;
         let currentWorkoutData = [];
+
+        // Calorie calculation constants and functions
+        const MET_VALUES = {
+            // Strength training MET values
+            'bench press': 6.0,
+            'squat': 5.0,
+            'deadlift': 6.0,
+            'overhead press': 4.0,
+            'row': 4.5,
+            'pull up': 8.0,
+            'push up': 3.8,
+            'bicep curl': 3.0,
+            'tricep extension': 3.0,
+            'leg press': 5.0,
+            'lat pulldown': 4.5,
+            'shoulder press': 4.0,
+            'chest fly': 3.5,
+            'leg curl': 3.5,
+            'leg extension': 3.5,
+            'calf raise': 3.0,
+            'plank': 3.8,
+            'lunge': 4.0,
+            'dip': 5.0,
+            'default_strength': 4.5, // Default for strength training
+            'default_cardio': 7.0     // Default for cardio
+        };
+
+        function getExerciseMET(exerciseName, category = 'strength') {
+            const name = exerciseName.toLowerCase();
+            
+            // Check for specific exercise matches
+            for (const [exercise, met] of Object.entries(MET_VALUES)) {
+                if (name.includes(exercise)) {
+                    return met;
+                }
+            }
+            
+            // Return default based on category
+            return category.toLowerCase() === 'cardio' ? MET_VALUES.default_cardio : MET_VALUES.default_strength;
+        }
+
+        function calculateCaloriesBurned(exerciseName, durationMinutes, weightKg, category = 'strength') {
+            const met = getExerciseMET(exerciseName, category);
+            return Math.round(met * weightKg * (durationMinutes / 60));
+        }
+
+        function calculateBMR(weight, height, age, gender) {
+            // Mifflin-St Jeor Equation
+            if (gender === 'male') {
+                return (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else if (gender === 'female') {
+                return (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            } else {
+                // Use average for other genders
+                return (10 * weight) + (6.25 * height) - (5 * age) - 78;
+            }
+        }
+
+        function calculateTDEE(bmr, activityLevel) {
+            return Math.round(bmr * parseFloat(activityLevel));
+        }
+
+        function calculateCurrentStreak() {
+            // Combine all workout dates
+            const allWorkoutDates = [
+                ...workouts.map(w => new Date(w.date).toDateString()),
+                ...completedWorkouts.map(w => new Date(w.date).toDateString())
+            ];
+            
+            // Get unique dates and sort them
+            const uniqueDates = [...new Set(allWorkoutDates)].sort((a, b) => new Date(b) - new Date(a));
+            
+            if (uniqueDates.length === 0) return 0;
+            
+            let streak = 0;
+            const today = new Date().toDateString();
+            const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toDateString();
+            
+            // Check if there's a workout today or yesterday to start the streak
+            if (uniqueDates[0] === today || uniqueDates[0] === yesterday) {
+                let currentDate = new Date(uniqueDates[0]);
+                
+                for (let i = 0; i < uniqueDates.length; i++) {
+                    const workoutDate = new Date(uniqueDates[i]);
+                    const daysDiff = Math.floor((currentDate - workoutDate) / (24 * 60 * 60 * 1000));
+                    
+                    if (daysDiff <= 1) {
+                        streak++;
+                        currentDate = workoutDate;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            
+            return streak;
+        }
+
+        function loadProfileData() {
+            if (profile.age) document.getElementById('calcAge').value = profile.age;
+            if (profile.gender) document.getElementById('calcGender').value = profile.gender;
+            if (profile.height) document.getElementById('calcHeight').value = profile.height;
+            if (profile.weight) document.getElementById('calcWeight').value = profile.weight;
+            if (profile.activityLevel) document.getElementById('calcActivityLevel').value = profile.activityLevel;
+            
+            if (profile.age && profile.gender && profile.height && profile.weight) {
+                showNotification('Profile data loaded successfully!', 'success');
+            } else {
+                showNotification('Some profile information is missing. Please complete your profile first.', 'error');
+            }
+        }
+
+        function calculateCalorieNeeds(event) {
+            event.preventDefault();
+            
+            const age = parseInt(document.getElementById('calcAge').value);
+            const gender = document.getElementById('calcGender').value;
+            const activityLevel = parseFloat(document.getElementById('calcActivityLevel').value);
+            
+            let weight = parseFloat(document.getElementById('calcWeight').value);
+            let height = parseFloat(document.getElementById('calcHeight').value);
+            
+            if (!age || !gender || !weight || !height) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            // Store original weight for macro calculations
+            const originalWeight = weight;
+            
+            // Convert to metric if needed for BMR calculation
+            if (!isMetric) {
+                weight = weight * 0.453592; // lbs to kg
+                height = height * 2.54; // inches to cm
+            }
+            
+            const bmr = calculateBMR(weight, height, age, gender);
+            const tdee = calculateTDEE(bmr, activityLevel);
+            
+            // Calculate calorie goals
+            const cuttingCalories = Math.round(tdee - 625); // 625 cal deficit (average of 500-750)
+            const maintainCalories = Math.round(tdee);
+            const bulkingCalories = Math.round(tdee + 400); // 400 cal surplus (average of 300-500)
+            
+            // Update displays
+            document.getElementById('bmrDisplay').textContent = Math.round(bmr) + ' cal';
+            document.getElementById('tdeeDisplay').textContent = maintainCalories + ' cal';
+            
+            document.getElementById('cuttingCalories').textContent = cuttingCalories + ' cal';
+            document.getElementById('cuttingRange').textContent = `Range: ${tdee - 750} - ${tdee - 500} calories`;
+            
+            document.getElementById('maintainCalories').textContent = maintainCalories + ' cal';
+            
+            document.getElementById('bulkingCalories').textContent = bulkingCalories + ' cal';
+            document.getElementById('bulkingRange').textContent = `Range: ${tdee + 300} - ${tdee + 500} calories`;
+            
+            // Calculate macros for maintenance calories (using original weight)
+            const proteinGrams = Math.round(originalWeight * (isMetric ? 2.2 : 1)); // 1g per lb or 2.2g per kg
+            const fatGrams = Math.round(originalWeight * (isMetric ? 0.66 : 0.3)); // 0.3g per lb or 0.66g per kg
+            
+            const proteinCals = proteinGrams * 4;
+            const fatCals = fatGrams * 9;
+            const remainingCals = maintainCalories - proteinCals - fatCals;
+            const carbGrams = Math.round(remainingCals / 4);
+            const carbCals = carbGrams * 4;
+            
+            document.getElementById('proteinGrams').textContent = proteinGrams + 'g';
+            document.getElementById('proteinCals').textContent = proteinCals + ' cal';
+            document.getElementById('fatGrams').textContent = fatGrams + 'g';
+            document.getElementById('fatCals').textContent = fatCals + ' cal';
+            document.getElementById('carbGrams').textContent = carbGrams + 'g';
+            document.getElementById('carbCals').textContent = carbCals + ' cal';
+            
+            // Show results
+            document.getElementById('metabolicPlaceholder').classList.add('hidden');
+            document.getElementById('metabolicResults').classList.remove('hidden');
+            document.getElementById('goalsPlaceholder').classList.add('hidden');
+            document.getElementById('calorieGoals').classList.remove('hidden');
+            document.getElementById('macroPlaceholder').classList.add('hidden');
+            document.getElementById('macroBreakdown').classList.remove('hidden');
+            
+            showNotification('Calorie needs calculated successfully!', 'success');
+        }
+
+        function estimateWorkoutCalories() {
+            if (!activeWorkout || !profile.weight) return 0;
+            
+            let weight = profile.weight;
+            if (!isMetric) {
+                weight = weight * 0.453592; // Convert lbs to kg
+            }
+            
+            const workoutDuration = (Date.now() - workoutStartTime) / (1000 * 60); // minutes
+            const avgMET = activeWorkout.exercises.reduce((sum, ex) => 
+                sum + getExerciseMET(ex.name, activeWorkout.category), 0) / activeWorkout.exercises.length;
+            
+            return Math.round(avgMET * weight * (workoutDuration / 60));
+        }
 
         // Unit conversion functions
         function lbsToKg(lbs) {
@@ -986,7 +1411,17 @@
             updateWorkoutDisplay();
             
             // Start the main workout timer
-            workoutTimer = setInterval(updateWorkoutTimer, 1000);
+            workoutTimer = setInterval(() => {
+                updateWorkoutTimer();
+                updateWorkoutCalorieEstimate();
+            }, 1000);
+        }
+
+        function updateWorkoutCalorieEstimate() {
+            if (!activeWorkout) return;
+            
+            const estimatedCalories = estimateWorkoutCalories();
+            document.getElementById('workoutCalorieEstimate').textContent = estimatedCalories;
         }
 
         function stopWorkout() {
@@ -1127,12 +1562,28 @@
             const minutes = Math.floor(workoutDuration / 60);
             const seconds = workoutDuration % 60;
             
+            // Calculate calories burned for this workout
+            let caloriesBurned = 0;
+            if (profile.weight) {
+                let weight = profile.weight;
+                if (!isMetric) {
+                    weight = weight * 0.453592; // Convert lbs to kg
+                }
+                caloriesBurned = calculateCaloriesBurned(
+                    activeWorkout.name, 
+                    workoutDuration / 60, 
+                    weight, 
+                    activeWorkout.category
+                );
+            }
+            
             // Save completed workout
             const completedWorkout = {
                 id: Date.now(),
                 planName: activeWorkout.name,
                 date: new Date().toISOString(),
                 duration: workoutDuration,
+                caloriesBurned: caloriesBurned,
                 exercises: currentWorkoutData.filter(ex => ex.sets.length > 0)
             };
             
@@ -1161,7 +1612,8 @@
             updateStatistics();
             updateTodaySummary();
             
-            showNotification(`Workout completed in ${minutes}:${seconds.toString().padStart(2, '0')}!`, 'success');
+            const calorieMessage = caloriesBurned > 0 ? ` and burned ${caloriesBurned} calories` : '';
+            showNotification(`Workout completed in ${minutes}:${seconds.toString().padStart(2, '0')}${calorieMessage}!`, 'success');
         }
 
         function updateWorkoutTimer() {
@@ -1376,15 +1828,34 @@
         function addWorkout(event) {
             event.preventDefault();
             
+            const exerciseName = document.getElementById('exerciseName').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const sets = parseInt(document.getElementById('sets').value);
+            const reps = parseInt(document.getElementById('reps').value);
+            const notes = document.getElementById('notes').value;
+            
+            // Calculate calories for manual workout entry
+            let caloriesBurned = 0;
+            if (profile.weight) {
+                let weightKg = profile.weight;
+                if (!isMetric) {
+                    weightKg = weightKg * 0.453592; // Convert lbs to kg
+                }
+                // Estimate 3 minutes per set for manual entries
+                const estimatedDuration = sets * 3;
+                caloriesBurned = calculateCaloriesBurned(exerciseName, estimatedDuration, weightKg);
+            }
+            
             const workout = {
                 id: Date.now(),
-                exercise: document.getElementById('exerciseName').value,
-                weight: parseFloat(document.getElementById('weight').value),
-                sets: parseInt(document.getElementById('sets').value),
-                reps: parseInt(document.getElementById('reps').value),
-                notes: document.getElementById('notes').value,
+                exercise: exerciseName,
+                weight: weight,
+                sets: sets,
+                reps: reps,
+                notes: notes,
                 date: new Date().toISOString(),
-                volume: parseFloat(document.getElementById('weight').value) * parseInt(document.getElementById('sets').value) * parseInt(document.getElementById('reps').value)
+                volume: weight * sets * reps,
+                caloriesBurned: caloriesBurned
             };
             
             workouts.push(workout);
@@ -1399,7 +1870,8 @@
             updateStatistics();
             
             // Show success message
-            showNotification('Workout logged successfully!', 'success');
+            const calorieMessage = caloriesBurned > 0 ? ` (${caloriesBurned} calories burned)` : '';
+            showNotification(`Workout logged successfully${calorieMessage}!`, 'success');
         }
 
         function deleteWorkout(id) {
@@ -1420,6 +1892,10 @@
             const totalSets = todayWorkouts.reduce((sum, w) => sum + w.sets, 0);
             const completedPlans = todayCompletedWorkouts.length;
             
+            // Calculate today's calories
+            const todayCalories = todayWorkouts.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0) +
+                                todayCompletedWorkouts.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0);
+            
             document.getElementById('todaySummary').innerHTML = `
                 <div class="bg-emerald-50 rounded-lg p-4 text-center">
                     <div class="text-2xl font-bold text-emerald-600">${totalExercises}</div>
@@ -1432,6 +1908,10 @@
                 <div class="bg-purple-50 rounded-lg p-4 text-center">
                     <div class="text-2xl font-bold text-purple-600">${completedPlans}</div>
                     <div class="text-sm text-purple-700">Plans Completed</div>
+                </div>
+                <div class="bg-orange-50 rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold text-orange-600">${todayCalories}</div>
+                    <div class="text-sm text-orange-700">Calories Burned</div>
                 </div>
             `;
         }
@@ -1454,6 +1934,7 @@
                             <p class="text-sm text-gray-600">${workout.sets} sets × ${workout.reps} reps @ ${workout.weight} ${weightUnit}</p>
                             <p class="text-xs text-gray-500 mt-1">${new Date(workout.date).toLocaleDateString()}</p>
                             ${workout.notes ? `<p class="text-sm text-gray-700 mt-2 italic">"${workout.notes}"</p>` : ''}
+                            ${workout.caloriesBurned ? `<span class="calorie-badge mt-2 inline-block">${workout.caloriesBurned} cal</span>` : ''}
                         </div>
                         <div class="flex items-center space-x-2">
                             <span class="text-sm font-medium text-emerald-600">${Math.round(workout.volume).toLocaleString()} ${weightUnit}</span>
@@ -1509,29 +1990,18 @@
             
             const personalRecords = Object.keys(exerciseMaxes).length;
             
-            // Calculate streak
-            const dates = [...new Set([
-                ...workouts.map(w => new Date(w.date).toDateString()),
-                ...completedWorkouts.map(w => new Date(w.date).toDateString())
-            ])].sort();
+            // Calculate total calories burned
+            const totalCalories = workouts.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0) +
+                                completedWorkouts.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0);
             
-            let streak = 0;
-            const today = new Date();
-            
-            for (let i = 0; i < 30; i++) {
-                const checkDate = new Date(today);
-                checkDate.setDate(today.getDate() - i);
-                if (dates.includes(checkDate.toDateString())) {
-                    streak++;
-                } else if (i > 0) {
-                    break;
-                }
-            }
+            // Calculate current streak
+            const currentStreak = calculateCurrentStreak();
             
             document.getElementById('totalWorkouts').textContent = totalCompletedWorkouts;
             document.getElementById('maxWeight').textContent = Math.round(maxWeight).toLocaleString() + ' ' + weightUnit;
             document.getElementById('personalRecords').textContent = personalRecords;
-            document.getElementById('currentStreak').textContent = streak + ' days';
+            document.getElementById('currentStreak').textContent = currentStreak + ' days';
+            document.getElementById('totalCalories').textContent = totalCalories.toLocaleString();
             
             // Update exercise filter
             const exercises = [...new Set([
@@ -1675,10 +2145,12 @@
         // Profile functions
         function loadProfile() {
             if (profile.name) document.getElementById('profileName').value = profile.name;
+            if (profile.age) document.getElementById('profileAge').value = profile.age;
             if (profile.height) document.getElementById('profileHeight').value = profile.height;
             if (profile.weight) document.getElementById('profileWeight').value = profile.weight;
             if (profile.gender) document.getElementById('profileGender').value = profile.gender;
             if (profile.frequency) document.getElementById('profileFrequency').value = profile.frequency;
+            if (profile.activityLevel) document.getElementById('activityLevel').value = profile.activityLevel;
             displaySavedProfile();
         }
 
@@ -1687,10 +2159,12 @@
             
             profile = {
                 name: document.getElementById('profileName').value || profile.name,
+                age: parseInt(document.getElementById('profileAge').value) || profile.age,
                 height: parseFloat(document.getElementById('profileHeight').value) || profile.height,
                 weight: parseFloat(document.getElementById('profileWeight').value) || profile.weight,
                 gender: document.getElementById('profileGender').value || profile.gender,
-                frequency: document.getElementById('profileFrequency').value || profile.frequency
+                frequency: document.getElementById('profileFrequency').value || profile.frequency,
+                activityLevel: document.getElementById('activityLevel').value || profile.activityLevel
             };
             
             localStorage.setItem('gymSyncProfile', JSON.stringify(profile));
@@ -1701,7 +2175,7 @@
         function displaySavedProfile() {
             const container = document.getElementById('profileDisplay');
             
-            if (!profile.name && !profile.height && !profile.weight && !profile.gender && !profile.frequency) {
+            if (!profile.name && !profile.age && !profile.height && !profile.weight && !profile.gender && !profile.frequency) {
                 container.innerHTML = '<p class="text-gray-500 text-center py-4">No profile information saved yet</p>';
                 return;
             }
@@ -1715,6 +2189,12 @@
                         <div class="flex justify-between items-center py-2 border-b border-gray-100">
                             <span class="font-medium text-gray-700">Name:</span>
                             <span class="text-gray-900">${profile.name}</span>
+                        </div>
+                    ` : ''}
+                    ${profile.age ? `
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="font-medium text-gray-700">Age:</span>
+                            <span class="text-gray-900">${profile.age} years</span>
                         </div>
                     ` : ''}
                     ${profile.height ? `
@@ -1765,8 +2245,12 @@
             }, 0);
             const weeklyAverage = Math.round(monthlyWorkouts / 4);
             
+            // Calculate monthly calories
+            const monthlyCalories = thisMonth.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0);
+            
             document.getElementById('monthlyWorkouts').textContent = monthlyWorkouts;
             document.getElementById('monthlySets').textContent = monthlySets;
+            document.getElementById('monthlyCalories').textContent = monthlyCalories;
             document.getElementById('weeklyAverage').textContent = weeklyAverage;
             
             updateAchievements();
@@ -1775,11 +2259,17 @@
         function updateAchievements() {
             const achievements = [];
             const totalWorkouts = workouts.length + completedWorkouts.length;
+            const totalCalories = workouts.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0) +
+                                completedWorkouts.reduce((sum, w) => sum + (w.caloriesBurned || 0), 0);
             
             if (totalWorkouts >= 1) achievements.push({ icon: 'fa-star', text: 'First Workout Logged', color: 'text-yellow-500' });
             if (totalWorkouts >= 10) achievements.push({ icon: 'fa-fire', text: '10 Workouts Completed', color: 'text-orange-500' });
             if (totalWorkouts >= 50) achievements.push({ icon: 'fa-trophy', text: '50 Workouts Milestone', color: 'text-purple-500' });
             if (totalWorkouts >= 100) achievements.push({ icon: 'fa-crown', text: 'Century Club', color: 'text-emerald-500' });
+            
+            if (totalCalories >= 1000) achievements.push({ icon: 'fa-burn', text: '1,000 Calories Burned', color: 'text-red-500' });
+            if (totalCalories >= 5000) achievements.push({ icon: 'fa-fire-flame-curved', text: '5,000 Calorie Crusher', color: 'text-orange-600' });
+            if (totalCalories >= 10000) achievements.push({ icon: 'fa-bolt', text: '10K Calorie Champion', color: 'text-yellow-600' });
             
             // Calculate total volume from all sources
             const totalVolume = workouts.reduce((sum, w) => sum + w.volume, 0) + 
@@ -1793,7 +2283,7 @@
             const volumeThreshold2 = isMetric ? 22680 : 50000; // 50k lbs = ~22680 kg
             
             if (totalVolume >= volumeThreshold1) achievements.push({ icon: 'fa-dumbbell', text: `${isMetric ? '4.5K' : '10K'} Volume Club`, color: 'text-blue-500' });
-            if (totalVolume >= volumeThreshold2) achievements.push({ icon: 'fa-medal', text: `${isMetric ? '22K' : '50K'} Volume Beast`, color: 'text-red-500' });
+            if (totalVolume >= volumeThreshold2) achievements.push({ icon: 'fa-medal', text: `${isMetric ? '22K' : '50K'} Volume Beast`, color: 'text-indigo-500' });
             
             const container = document.getElementById('achievements');
             if (achievements.length === 0) {
@@ -1824,5 +2314,5 @@
             }, 3000);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972cf109464a56a2',t:'MTc1NTgwODc4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9731fba8c5c056c4',t:'MTc1NTg2MTY0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
