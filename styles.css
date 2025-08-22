@@ -1,0 +1,323 @@
+/* Custom CSS for GymSync */
+
+/* Gradient backgrounds */
+.accent-gradient {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hover-lift {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile menu */
+.mobile-menu {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+/* Chart containers */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+/* Exercise item styles */
+.exercise-item {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f9fafb;
+}
+
+/* Plan card styles */
+.plan-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.plan-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.plan-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: #6b7280;
+    flex-wrap: wrap;
+}
+
+.plan-stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Category badges */
+.category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.category-strength { background-color: #fef3c7; color: #92400e; }
+.category-cardio { background-color: #dbeafe; color: #1e40af; }
+.category-upper { background-color: #e0e7ff; color: #5b21b6; }
+.category-lower { background-color: #fce7f3; color: #be185d; }
+.category-push { background-color: #d1fae5; color: #065f46; }
+.category-pull { background-color: #fed7d7; color: #c53030; }
+.category-legs { background-color: #fef2e2; color: #9a3412; }
+.category-full { background-color: #f3e8ff; color: #6b21a8; }
+
+/* Workout Timer Overlay Styles */
+.workout-timer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.workout-timer-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.workout-timer-header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 24px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.workout-progress {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.current-exercise {
+    padding: 32px 24px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.exercise-details {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 24px;
+}
+
+.detail-card {
+    text-align: center;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+    min-width: 120px;
+}
+
+.rest-timer-section {
+    padding: 32px 24px;
+    background: #fef3c7;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.workout-controls {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .workout-timer-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .workout-timer-header {
+        padding: 20px;
+    }
+    
+    .current-exercise {
+        padding: 24px 20px;
+    }
+    
+    .exercise-details {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+    
+    .detail-card {
+        min-width: 100px;
+    }
+    
+    .workout-controls {
+        padding: 20px;
+    }
+}
+
+/* Unit toggle styles */
+.unit-toggle {
+    transition: all 0.2s ease-in-out;
+}
+
+.unit-toggle:hover {
+    transform: translateY(-1px);
+}
+
+/* Page transitions */
+.page {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page.hidden {
+    display: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Focus styles */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Button hover effects */
+button {
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Success/Error states */
+.success {
+    border-color: #10b981;
+    background-color: #ecfdf5;
+}
+
+.error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
