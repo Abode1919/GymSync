@@ -520,14 +520,8 @@
                     <button onclick="showPage('plans')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-clipboard-list mr-2"></i>Plans
                     </button>
-                    <button onclick="showPage('exercises')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        <i class="fas fa-book mr-2"></i>Exercises
-                    </button>
                     <button onclick="showPage('statistics')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-chart-line mr-2"></i>Statistics
-                    </button>
-                    <button onclick="showPage('profile')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        <i class="fas fa-user mr-2"></i>Profile
                     </button>
                     <button onclick="showPage('calories')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-calculator mr-2"></i>Calories
@@ -550,9 +544,15 @@
                                 <button onclick="showPage('goals'); closeProgressDropdown()" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
                                     <i class="fas fa-bullseye mr-3"></i>Goals
                                 </button>
+                                <button onclick="showPage('exercises')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                    <i class="fas fa-book mr-2"></i>Exercises
+                                </button>
                             </div>
                         </div>
                     </div>
+                    <button onclick="showPage('profile')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-user mr-2"></i>Profile
+                    </button>
                     <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
                         <button onclick="toggleUnits()" class="unit-toggle bg-gray-100 hover:bg-emerald-100 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
                             <span id="unitDisplay">Imperial</span>
