@@ -272,6 +272,234 @@
             font-size: 12px;
             font-weight: 600;
         }
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+        }
+        .calendar-day:hover {
+            background-color: #f3f4f6;
+        }
+        .calendar-day.today {
+            background-color: #dbeafe;
+            border-color: #3b82f6;
+            font-weight: 600;
+        }
+        .calendar-day.workout-day {
+            background-color: #d1fae5;
+            border-color: #10b981;
+        }
+        .calendar-day.multiple-workouts {
+            background-color: #10b981;
+            color: white;
+            font-weight: 600;
+        }
+        .calendar-day.other-month {
+            color: #9ca3af;
+            background-color: #f9fafb;
+        }
+        .calendar-header {
+            font-weight: 600;
+            text-align: center;
+            padding: 12px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            color: #374151;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .muscle-group-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .muscle-chest { background-color: #fef3c7; color: #92400e; }
+        .muscle-back { background-color: #dbeafe; color: #1e40af; }
+        .muscle-shoulders { background-color: #e0e7ff; color: #5b21b6; }
+        .muscle-arms { background-color: #fce7f3; color: #be185d; }
+        .muscle-legs { background-color: #d1fae5; color: #065f46; }
+        .muscle-core { background-color: #fed7d7; color: #c53030; }
+        .muscle-cardio { background-color: #fef2e2; color: #9a3412; }
+        .equipment-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 500;
+            background-color: #f3f4f6;
+            color: #6b7280;
+            margin-left: 8px;
+        }
+        .goal-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .goal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .goal-progress-bar {
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .goal-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease-in-out;
+        }
+        .goal-status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-active { background-color: #dbeafe; color: #1e40af; }
+        .status-completed { background-color: #d1fae5; color: #065f46; }
+        .status-overdue { background-color: #fee2e2; color: #dc2626; }
+        .goal-type-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .type-strength { background-color: #fef3c7; color: #92400e; }
+        .type-endurance { background-color: #dbeafe; color: #1e40af; }
+        .type-weight { background-color: #e0e7ff; color: #5b21b6; }
+        .type-frequency { background-color: #fce7f3; color: #be185d; }
+        .type-custom { background-color: #f3e8ff; color: #6b21a8; }
+        
+        /* Progress Photos Styles */
+        .photo-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .photo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .photo-type-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .type-front { background-color: #dbeafe; color: #1e40af; }
+        .type-side { background-color: #fef3c7; color: #92400e; }
+        .type-back { background-color: #e0e7ff; color: #5b21b6; }
+        .type-progress { background-color: #d1fae5; color: #065f46; }
+        .type-milestone { background-color: #fce7f3; color: #be185d; }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: -2rem;
+            width: 2px;
+            background: linear-gradient(to bottom, #10b981, #d1fae5);
+        }
+        .timeline-item:last-child::before {
+            bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            width: 1rem;
+            height: 1rem;
+            background: #10b981;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #d1fae5;
+        }
+        
+        .photo-comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .photo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .photo-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .photo-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .photo-overlay-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        
+        @media (max-width: 768px) {
+            .photo-comparison-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+            .timeline-item::before {
+                left: 0.375rem;
+            }
+            .timeline-dot {
+                left: -0.125rem;
+                width: 0.75rem;
+                height: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -289,11 +517,11 @@
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <button onclick="showPage('home')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        <i class="fas fa-home mr-2"></i>Home
-                    </button>
                     <button onclick="showPage('plans')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-clipboard-list mr-2"></i>Plans
+                    </button>
+                    <button onclick="showPage('exercises')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-book mr-2"></i>Exercises
                     </button>
                     <button onclick="showPage('statistics')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-chart-line mr-2"></i>Statistics
@@ -304,6 +532,27 @@
                     <button onclick="showPage('calories')" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-calculator mr-2"></i>Calories
                     </button>
+                    
+                    <!-- Progress Dropdown -->
+                    <div class="relative" id="progressDropdown">
+                        <button onclick="toggleProgressDropdown()" class="nav-btn text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
+                            <i class="fas fa-chart-bar mr-2"></i>Progress
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div id="progressDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                            <div class="py-2">
+                                <button onclick="showPage('history'); closeProgressDropdown()" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
+                                    <i class="fas fa-history mr-3"></i>History
+                                </button>
+                                <button onclick="showPage('photos'); closeProgressDropdown()" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
+                                    <i class="fas fa-camera mr-3"></i>Progress Photos
+                                </button>
+                                <button onclick="showPage('goals'); closeProgressDropdown()" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
+                                    <i class="fas fa-bullseye mr-3"></i>Goals
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
                         <button onclick="toggleUnits()" class="unit-toggle bg-gray-100 hover:bg-emerald-100 px-3 py-2 rounded-lg text-sm font-medium transition-colors">
                             <span id="unitDisplay">Imperial</span>
@@ -334,11 +583,11 @@
                     </button>
                 </div>
                 <nav class="space-y-4">
-                    <button onclick="showPage('home'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
-                        <i class="fas fa-home mr-3"></i>Home
-                    </button>
                     <button onclick="showPage('plans'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
                         <i class="fas fa-clipboard-list mr-3"></i>Plans
+                    </button>
+                    <button onclick="showPage('exercises'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
+                        <i class="fas fa-book mr-3"></i>Exercises
                     </button>
                     <button onclick="showPage('statistics'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
                         <i class="fas fa-chart-line mr-3"></i>Statistics
@@ -349,6 +598,20 @@
                     <button onclick="showPage('calories'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
                         <i class="fas fa-calculator mr-3"></i>Calories
                     </button>
+                    
+                    <!-- Progress Section -->
+                    <div class="border-t border-gray-200 pt-4">
+                        <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">Progress</div>
+                        <button onclick="showPage('history'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
+                            <i class="fas fa-history mr-3"></i>History
+                        </button>
+                        <button onclick="showPage('photos'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
+                            <i class="fas fa-camera mr-3"></i>Progress Photos
+                        </button>
+                        <button onclick="showPage('goals'); toggleMobileMenu()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
+                            <i class="fas fa-bullseye mr-3"></i>Goals
+                        </button>
+                    </div>
                     <div class="border-t border-gray-200 pt-4 mt-4">
                         <button onclick="toggleUnits()" class="w-full text-left px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors">
                             <i class="fas fa-exchange-alt mr-3"></i>Units: <span id="mobileUnitDisplay">Imperial</span>
@@ -369,8 +632,8 @@
                     <div>
                         <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to GymSync</h1>
                         <p class="text-xl opacity-90 mb-6">Track your fitness journey with precision and style</p>
-                        <button onclick="document.getElementById('workoutForm').scrollIntoView({behavior: 'smooth'})" class="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            Log Your Workout
+                        <button onclick="document.getElementById('homeWorkoutPlans').scrollIntoView({behavior: 'smooth'})" class="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            Start a Workout
                         </button>
                     </div>
                     <div class="mt-6 md:mt-0">
@@ -389,36 +652,17 @@
                 </div>
             </div>
 
-            <!-- Workout Logging Form -->
-            <div id="workoutForm" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Log New Workout</h2>
-                <form onsubmit="addWorkout(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Exercise Name</label>
-                            <input type="text" id="exerciseName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="e.g., Bench Press">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Weight (<span class="weight-unit">lbs</span>)</label>
-                            <input type="number" id="weight" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="135">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Sets</label>
-                            <input type="number" id="sets" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="3">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Reps</label>
-                            <input type="number" id="reps" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="10">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Notes (Optional)</label>
-                        <textarea id="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="How did it feel? Any observations?"></textarea>
-                    </div>
-                    <button type="submit" class="w-full accent-gradient text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-opacity">
-                        <i class="fas fa-plus mr-2"></i>Add Exercise
+            <!-- Your Workout Plans -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Your Workout Plans</h2>
+                    <button onclick="openCreatePlanModal()" class="accent-gradient text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm">
+                        <i class="fas fa-plus mr-2"></i>New Plan
                     </button>
-                </form>
+                </div>
+                <div id="homeWorkoutPlans">
+                    <!-- Plans will be populated by JavaScript -->
+                </div>
             </div>
 
             <!-- Recent Workouts -->
@@ -427,6 +671,137 @@
                 <div id="recentWorkouts" class="space-y-4">
                     <!-- Recent workouts will be populated by JavaScript -->
                 </div>
+            </div>
+        </div>
+
+        <!-- History Page -->
+        <div id="historyPage" class="page hidden fade-in">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Workout History</h1>
+                <p class="text-gray-600">Browse your complete workout history and track your progress over time</p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Exercise</label>
+                        <select id="historyExerciseFilter" onchange="filterHistory()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Exercises</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
+                        <select id="historyDateFilter" onchange="filterHistory()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Time</option>
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 3 Months</option>
+                            <option value="365">Last Year</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">View Type</label>
+                        <div class="flex rounded-lg border border-gray-300 overflow-hidden">
+                            <button id="listViewBtn" onclick="switchHistoryView('list')" class="flex-1 px-4 py-3 bg-emerald-500 text-white font-medium text-sm transition-colors">
+                                <i class="fas fa-list mr-2"></i>List
+                            </button>
+                            <button id="calendarViewBtn" onclick="switchHistoryView('calendar')" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-medium text-sm transition-colors">
+                                <i class="fas fa-calendar mr-2"></i>Calendar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List View -->
+            <div id="historyListView" class="bg-white rounded-xl shadow-sm border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-xl font-bold text-gray-900">Workout Sessions</h2>
+                </div>
+                <div id="historyList" class="divide-y divide-gray-200">
+                    <!-- History items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Calendar View -->
+            <div id="historyCalendarView" class="hidden bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-900">Calendar View</h2>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="changeCalendarMonth(-1)" class="p-2 text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span id="calendarMonthYear" class="text-lg font-semibold text-gray-900"></span>
+                        <button onclick="changeCalendarMonth(1)" class="p-2 text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="workoutCalendar" class="grid grid-cols-7 gap-1">
+                    <!-- Calendar will be populated by JavaScript -->
+                </div>
+                <div class="mt-4 flex items-center space-x-4 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-4 h-4 bg-emerald-200 rounded"></div>
+                        <span class="text-gray-600">Workout Day</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-4 h-4 bg-emerald-500 rounded"></div>
+                        <span class="text-gray-600">Multiple Workouts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise Library Page -->
+        <div id="exercisesPage" class="page hidden fade-in">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Exercise Library</h1>
+                <p class="text-gray-600">Discover new exercises and add them to your workout plans</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Search Exercises</label>
+                        <div class="relative">
+                            <input type="text" id="exerciseSearch" onkeyup="searchExercises()" class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="Search by name or muscle group...">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Muscle Group</label>
+                        <select id="muscleGroupFilter" onchange="filterExercises()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Muscle Groups</option>
+                            <option value="chest">Chest</option>
+                            <option value="back">Back</option>
+                            <option value="shoulders">Shoulders</option>
+                            <option value="arms">Arms</option>
+                            <option value="legs">Legs</option>
+                            <option value="core">Core</option>
+                            <option value="cardio">Cardio</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Equipment</label>
+                        <select id="equipmentFilter" onchange="filterExercises()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Equipment</option>
+                            <option value="bodyweight">Bodyweight</option>
+                            <option value="barbell">Barbell</option>
+                            <option value="dumbbell">Dumbbell</option>
+                            <option value="machine">Machine</option>
+                            <option value="cable">Cable</option>
+                            <option value="cardio">Cardio Equipment</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Grid -->
+            <div id="exerciseLibrary" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Exercises will be populated by JavaScript -->
             </div>
         </div>
 
@@ -543,6 +918,154 @@
                         <canvas id="strengthChart"></canvas>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Goals & Challenges Page -->
+        <div id="goalsPage" class="page hidden fade-in">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Goals & Challenges</h1>
+                <p class="text-gray-600">Set personal fitness goals and track your progress to stay motivated</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bullseye text-emerald-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Active Goals</p>
+                            <p id="activeGoalsCount" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Completed</p>
+                            <p id="completedGoalsCount" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-percentage text-blue-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Success Rate</p>
+                            <p id="successRate" class="text-2xl font-bold text-gray-900">0%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-fire text-purple-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Current Streak</p>
+                            <p id="goalStreak" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Goal Section -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-900">Create New Goal</h2>
+                    <button onclick="toggleGoalForm()" class="accent-gradient text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm">
+                        <i class="fas fa-plus mr-2"></i>New Goal
+                    </button>
+                </div>
+
+                <div id="goalForm" class="hidden">
+                    <form onsubmit="createGoal(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Goal Type</label>
+                                <select id="goalType" onchange="updateGoalForm()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <option value="">Select Goal Type</option>
+                                    <option value="strength">Strength Goal</option>
+                                    <option value="endurance">Endurance Goal</option>
+                                    <option value="weight">Weight Goal</option>
+                                    <option value="frequency">Workout Frequency</option>
+                                    <option value="custom">Custom Goal</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Target Date</label>
+                                <input type="date" id="goalTargetDate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic form fields based on goal type -->
+                        <div id="dynamicGoalFields"></div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Goal Description</label>
+                            <textarea id="goalDescription" rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="Describe your goal and why it's important to you"></textarea>
+                        </div>
+
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" onclick="toggleGoalForm()" class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                                Cancel
+                            </button>
+                            <button type="submit" class="accent-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                                <i class="fas fa-save mr-2"></i>Create Goal
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Goals Filter -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Status</label>
+                        <select id="goalStatusFilter" onchange="filterGoals()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Goals</option>
+                            <option value="active">Active Goals</option>
+                            <option value="completed">Completed Goals</option>
+                            <option value="overdue">Overdue Goals</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Type</label>
+                        <select id="goalTypeFilter" onchange="filterGoals()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Types</option>
+                            <option value="strength">Strength</option>
+                            <option value="endurance">Endurance</option>
+                            <option value="weight">Weight</option>
+                            <option value="frequency">Frequency</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals List -->
+            <div id="goalsList" class="space-y-6">
+                <!-- Goals will be populated by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="goalsEmptyState" class="hidden text-center py-12">
+                <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-target text-3xl text-emerald-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">No goals yet</h3>
+                <p class="text-gray-600 mb-6">Set your first fitness goal to start tracking your progress</p>
+                <button onclick="toggleGoalForm()" class="accent-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                    <i class="fas fa-plus mr-2"></i>Create Your First Goal
+                </button>
             </div>
         </div>
 
@@ -713,6 +1236,181 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Progress Photos Page -->
+        <div id="photosPage" class="page hidden fade-in">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Progress Photos</h1>
+                <p class="text-gray-600">Track your physical transformation with private progress photos</p>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-900">Add New Photo</h2>
+                    <div class="flex items-center space-x-2 text-sm text-gray-500">
+                        <i class="fas fa-lock"></i>
+                        <span>Private & Secure</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Upload Area -->
+                    <div>
+                        <div id="photoUploadArea" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-emerald-400 transition-colors cursor-pointer" onclick="document.getElementById('photoInput').click()">
+                            <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-camera text-2xl text-emerald-600"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Upload Progress Photo</h3>
+                            <p class="text-gray-600 mb-4">Click to select or drag and drop your photo here</p>
+                            <p class="text-sm text-gray-500">Supports JPG, PNG, WebP (max 5MB)</p>
+                        </div>
+                        <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                        
+                        <!-- Photo Preview -->
+                        <div id="photoPreview" class="hidden mt-4">
+                            <img id="previewImage" class="w-full h-64 object-cover rounded-lg border border-gray-200">
+                        </div>
+                    </div>
+
+                    <!-- Photo Details Form -->
+                    <div id="photoDetailsForm" class="hidden">
+                        <form onsubmit="saveProgressPhoto(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Photo Date</label>
+                                <input type="date" id="photoDate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Photo Type</label>
+                                <select id="photoType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <option value="">Select Photo Type</option>
+                                    <option value="front">Front View</option>
+                                    <option value="side">Side View</option>
+                                    <option value="back">Back View</option>
+                                    <option value="progress">General Progress</option>
+                                    <option value="milestone">Milestone Photo</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Current Weight (<span class="weight-unit">lbs</span>) - Optional</label>
+                                <input type="number" id="photoWeight" step="0.1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="Enter current weight">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Notes (Optional)</label>
+                                <textarea id="photoNotes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="Add any notes about this photo..."></textarea>
+                            </div>
+                            
+                            <div class="flex space-x-4">
+                                <button type="button" onclick="cancelPhotoUpload()" class="flex-1 px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="flex-1 accent-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                                    <i class="fas fa-save mr-2"></i>Save Photo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Options -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Your Progress Photos</h2>
+                        <p class="text-gray-600">View your transformation journey over time</p>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- View Mode Toggle -->
+                        <div class="flex rounded-lg border border-gray-300 overflow-hidden">
+                            <button id="timelineViewBtn" onclick="switchPhotoView('timeline')" class="px-4 py-2 bg-emerald-500 text-white font-medium text-sm transition-colors">
+                                <i class="fas fa-stream mr-2"></i>Timeline
+                            </button>
+                            <button id="comparisonViewBtn" onclick="switchPhotoView('comparison')" class="px-4 py-2 bg-gray-100 text-gray-700 font-medium text-sm transition-colors">
+                                <i class="fas fa-columns mr-2"></i>Compare
+                            </button>
+                            <button id="gridViewBtn" onclick="switchPhotoView('grid')" class="px-4 py-2 bg-gray-100 text-gray-700 font-medium text-sm transition-colors">
+                                <i class="fas fa-th mr-2"></i>Grid
+                            </button>
+                        </div>
+                        
+                        <!-- Filter Options -->
+                        <select id="photoTypeFilter" onchange="filterPhotos()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                            <option value="all">All Types</option>
+                            <option value="front">Front View</option>
+                            <option value="side">Side View</option>
+                            <option value="back">Back View</option>
+                            <option value="progress">General Progress</option>
+                            <option value="milestone">Milestone</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Display Areas -->
+            
+            <!-- Timeline View -->
+            <div id="timelineView" class="bg-white rounded-xl shadow-sm border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900">Progress Timeline</h3>
+                </div>
+                <div id="photoTimeline" class="p-6">
+                    <!-- Timeline will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Comparison View -->
+            <div id="comparisonView" class="hidden bg-white rounded-xl shadow-sm border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold text-gray-900">Photo Comparison</h3>
+                        <div class="flex items-center space-x-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Before Photo</label>
+                                <select id="beforePhotoSelect" onchange="updateComparison()" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                    <option value="">Select photo...</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">After Photo</label>
+                                <select id="afterPhotoSelect" onchange="updateComparison()" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                    <option value="">Select photo...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="photoComparison" class="p-6">
+                    <!-- Comparison will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Grid View -->
+            <div id="gridView" class="hidden bg-white rounded-xl shadow-sm border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900">Photo Gallery</h3>
+                </div>
+                <div id="photoGrid" class="p-6">
+                    <!-- Grid will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="photosEmptyState" class="hidden text-center py-12">
+                <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-camera text-3xl text-emerald-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">No progress photos yet</h3>
+                <p class="text-gray-600 mb-6">Start documenting your fitness journey with your first progress photo</p>
+                <button onclick="document.getElementById('photoInput').click()" class="accent-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                    <i class="fas fa-camera mr-2"></i>Add Your First Photo
+                </button>
             </div>
         </div>
 
@@ -925,6 +1623,14 @@
         </div>
     </div>
 
+    <!-- Photo Overlay -->
+    <div id="photoOverlay" class="photo-overlay">
+        <div class="photo-overlay-close" onclick="closePhotoOverlay()">
+            <i class="fas fa-times"></i>
+        </div>
+        <img id="overlayImage" src="" alt="Progress Photo">
+    </div>
+
     <!-- Workout Timer Overlay -->
     <div id="workoutTimerOverlay" class="workout-timer-overlay hidden">
         <div class="workout-timer-content">
@@ -1022,6 +1728,74 @@
         let strengthChart;
         let isMetric = JSON.parse(localStorage.getItem('gymSyncUnits')) || false;
         let currentPlanExercises = [];
+        let currentHistoryView = 'list';
+        let currentCalendarDate = new Date();
+        let filteredExercises = [];
+        let goals = JSON.parse(localStorage.getItem('gymSyncGoals')) || [];
+        let filteredGoals = [];
+        let progressPhotos = JSON.parse(localStorage.getItem('gymSyncProgressPhotos')) || [];
+        let filteredPhotos = [];
+        let currentPhotoView = 'timeline';
+        let currentPhotoFile = null;
+
+        // Exercise Library Data
+        const exerciseLibraryData = [
+            // Chest Exercises
+            { name: 'Bench Press', muscleGroup: 'chest', equipment: 'barbell', description: 'Classic compound movement for chest, shoulders, and triceps', instructions: 'Lie on bench, grip bar slightly wider than shoulders, lower to chest, press up' },
+            { name: 'Incline Bench Press', muscleGroup: 'chest', equipment: 'barbell', description: 'Upper chest focused variation of bench press', instructions: 'Set bench to 30-45 degrees, perform bench press motion' },
+            { name: 'Dumbbell Bench Press', muscleGroup: 'chest', equipment: 'dumbbell', description: 'Allows greater range of motion than barbell', instructions: 'Hold dumbbells, lower with control, press up and slightly inward' },
+            { name: 'Dumbbell Flyes', muscleGroup: 'chest', equipment: 'dumbbell', description: 'Isolation exercise for chest muscles', instructions: 'Arms slightly bent, lower dumbbells in arc motion, squeeze chest at top' },
+            { name: 'Push-ups', muscleGroup: 'chest', equipment: 'bodyweight', description: 'Bodyweight chest exercise with many variations', instructions: 'Hands shoulder-width apart, lower chest to ground, push up' },
+            { name: 'Dips', muscleGroup: 'chest', equipment: 'bodyweight', description: 'Compound movement for chest and triceps', instructions: 'Lean forward slightly, lower body, press up' },
+            
+            // Back Exercises
+            { name: 'Deadlift', muscleGroup: 'back', equipment: 'barbell', description: 'King of all exercises, works entire posterior chain', instructions: 'Feet hip-width, grip bar, keep back straight, drive through heels' },
+            { name: 'Pull-ups', muscleGroup: 'back', equipment: 'bodyweight', description: 'Vertical pulling exercise for lats and biceps', instructions: 'Hang from bar, pull body up until chin over bar, lower with control' },
+            { name: 'Bent-over Row', muscleGroup: 'back', equipment: 'barbell', description: 'Horizontal pulling for mid-back and lats', instructions: 'Hinge at hips, pull bar to lower chest, squeeze shoulder blades' },
+            { name: 'Lat Pulldown', muscleGroup: 'back', equipment: 'machine', description: 'Machine alternative to pull-ups', instructions: 'Pull bar to upper chest, focus on lat engagement' },
+            { name: 'Seated Cable Row', muscleGroup: 'back', equipment: 'cable', description: 'Seated horizontal pulling exercise', instructions: 'Pull handle to torso, squeeze shoulder blades together' },
+            { name: 'T-Bar Row', muscleGroup: 'back', equipment: 'machine', description: 'Thick grip rowing variation', instructions: 'Chest up, pull weight to lower chest, control the negative' },
+            
+            // Shoulder Exercises
+            { name: 'Overhead Press', muscleGroup: 'shoulders', equipment: 'barbell', description: 'Vertical pressing for shoulders and core', instructions: 'Press bar overhead, keep core tight, full lockout' },
+            { name: 'Dumbbell Shoulder Press', muscleGroup: 'shoulders', equipment: 'dumbbell', description: 'Seated or standing shoulder press', instructions: 'Press dumbbells overhead, control the descent' },
+            { name: 'Lateral Raises', muscleGroup: 'shoulders', equipment: 'dumbbell', description: 'Isolation for side deltoids', instructions: 'Raise arms to sides until parallel to floor' },
+            { name: 'Rear Delt Flyes', muscleGroup: 'shoulders', equipment: 'dumbbell', description: 'Targets rear deltoids', instructions: 'Bend forward, raise arms back in arc motion' },
+            { name: 'Face Pulls', muscleGroup: 'shoulders', equipment: 'cable', description: 'Great for rear delts and posture', instructions: 'Pull rope to face, separate handles at face level' },
+            { name: 'Arnold Press', muscleGroup: 'shoulders', equipment: 'dumbbell', description: 'Rotating shoulder press variation', instructions: 'Start palms facing you, rotate and press overhead' },
+            
+            // Arm Exercises
+            { name: 'Bicep Curls', muscleGroup: 'arms', equipment: 'dumbbell', description: 'Classic bicep isolation exercise', instructions: 'Curl weight up, squeeze bicep, lower with control' },
+            { name: 'Hammer Curls', muscleGroup: 'arms', equipment: 'dumbbell', description: 'Neutral grip bicep exercise', instructions: 'Keep palms facing each other throughout movement' },
+            { name: 'Tricep Dips', muscleGroup: 'arms', equipment: 'bodyweight', description: 'Bodyweight tricep exercise', instructions: 'Lower body by bending elbows, press back up' },
+            { name: 'Close-Grip Bench Press', muscleGroup: 'arms', equipment: 'barbell', description: 'Compound tricep exercise', instructions: 'Narrow grip, focus on tricep engagement' },
+            { name: 'Tricep Pushdowns', muscleGroup: 'arms', equipment: 'cable', description: 'Cable tricep isolation', instructions: 'Push cable down, squeeze triceps at bottom' },
+            { name: 'Preacher Curls', muscleGroup: 'arms', equipment: 'machine', description: 'Isolated bicep exercise', instructions: 'Arms on pad, curl weight up, control negative' },
+            
+            // Leg Exercises
+            { name: 'Squats', muscleGroup: 'legs', equipment: 'barbell', description: 'King of leg exercises', instructions: 'Feet shoulder-width, squat down, drive through heels' },
+            { name: 'Romanian Deadlift', muscleGroup: 'legs', equipment: 'barbell', description: 'Hamstring and glute focused', instructions: 'Hinge at hips, lower bar along legs, feel hamstring stretch' },
+            { name: 'Leg Press', muscleGroup: 'legs', equipment: 'machine', description: 'Machine-based quad exercise', instructions: 'Lower weight with control, press through heels' },
+            { name: 'Lunges', muscleGroup: 'legs', equipment: 'bodyweight', description: 'Unilateral leg exercise', instructions: 'Step forward, lower back knee, push back to start' },
+            { name: 'Leg Curls', muscleGroup: 'legs', equipment: 'machine', description: 'Hamstring isolation exercise', instructions: 'Curl heels toward glutes, control the weight' },
+            { name: 'Calf Raises', muscleGroup: 'legs', equipment: 'bodyweight', description: 'Calf muscle exercise', instructions: 'Rise up on toes, hold briefly, lower slowly' },
+            
+            // Core Exercises
+            { name: 'Plank', muscleGroup: 'core', equipment: 'bodyweight', description: 'Isometric core strengthener', instructions: 'Hold straight line from head to heels' },
+            { name: 'Crunches', muscleGroup: 'core', equipment: 'bodyweight', description: 'Basic abdominal exercise', instructions: 'Lift shoulders off ground, squeeze abs' },
+            { name: 'Russian Twists', muscleGroup: 'core', equipment: 'bodyweight', description: 'Rotational core exercise', instructions: 'Lean back, rotate torso side to side' },
+            { name: 'Dead Bug', muscleGroup: 'core', equipment: 'bodyweight', description: 'Core stability exercise', instructions: 'Opposite arm and leg extensions while maintaining neutral spine' },
+            { name: 'Mountain Climbers', muscleGroup: 'core', equipment: 'bodyweight', description: 'Dynamic core and cardio exercise', instructions: 'Alternate bringing knees to chest in plank position' },
+            { name: 'Hanging Leg Raises', muscleGroup: 'core', equipment: 'bodyweight', description: 'Advanced core exercise', instructions: 'Hang from bar, raise legs to 90 degrees' },
+            
+            // Cardio Exercises
+            { name: 'Treadmill Running', muscleGroup: 'cardio', equipment: 'cardio', description: 'Classic cardio exercise', instructions: 'Maintain steady pace, focus on breathing' },
+            { name: 'Cycling', muscleGroup: 'cardio', equipment: 'cardio', description: 'Low-impact cardio option', instructions: 'Adjust resistance, maintain consistent cadence' },
+            { name: 'Rowing Machine', muscleGroup: 'cardio', equipment: 'cardio', description: 'Full-body cardio workout', instructions: 'Drive with legs, pull with arms, reverse the motion' },
+            { name: 'Burpees', muscleGroup: 'cardio', equipment: 'bodyweight', description: 'High-intensity full-body exercise', instructions: 'Squat, jump back to plank, push-up, jump forward, jump up' },
+            { name: 'Jump Rope', muscleGroup: 'cardio', equipment: 'bodyweight', description: 'Portable cardio exercise', instructions: 'Light on feet, consistent rhythm' },
+            { name: 'High Knees', muscleGroup: 'cardio', equipment: 'bodyweight', description: 'Running in place variation', instructions: 'Bring knees up to waist level alternately' }
+        ];
 
         // Workout Timer Variables
         let activeWorkout = null;
@@ -1336,6 +2110,1184 @@
             }
         }
 
+        // History Functions
+        function switchHistoryView(view) {
+            currentHistoryView = view;
+            
+            if (view === 'list') {
+                document.getElementById('historyListView').classList.remove('hidden');
+                document.getElementById('historyCalendarView').classList.add('hidden');
+                document.getElementById('listViewBtn').className = 'flex-1 px-4 py-3 bg-emerald-500 text-white font-medium text-sm transition-colors';
+                document.getElementById('calendarViewBtn').className = 'flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-medium text-sm transition-colors';
+                displayHistoryList();
+            } else {
+                document.getElementById('historyListView').classList.add('hidden');
+                document.getElementById('historyCalendarView').classList.remove('hidden');
+                document.getElementById('listViewBtn').className = 'flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-medium text-sm transition-colors';
+                document.getElementById('calendarViewBtn').className = 'flex-1 px-4 py-3 bg-emerald-500 text-white font-medium text-sm transition-colors';
+                displayWorkoutCalendar();
+            }
+        }
+
+        function filterHistory() {
+            if (currentHistoryView === 'list') {
+                displayHistoryList();
+            } else {
+                displayWorkoutCalendar();
+            }
+        }
+
+        function displayHistoryList() {
+            const exerciseFilter = document.getElementById('historyExerciseFilter').value;
+            const dateFilter = parseInt(document.getElementById('historyDateFilter').value);
+            
+            // Combine all workout data
+            let allWorkouts = [];
+            
+            // Add manual workouts
+            workouts.forEach(w => {
+                allWorkouts.push({
+                    type: 'manual',
+                    date: new Date(w.date),
+                    exercise: w.exercise,
+                    sets: w.sets,
+                    reps: w.reps,
+                    weight: w.weight,
+                    notes: w.notes,
+                    caloriesBurned: w.caloriesBurned || 0,
+                    volume: w.volume
+                });
+            });
+            
+            // Add completed workout plans
+            completedWorkouts.forEach(w => {
+                allWorkouts.push({
+                    type: 'plan',
+                    date: new Date(w.date),
+                    planName: w.planName,
+                    duration: w.duration,
+                    exercises: w.exercises,
+                    caloriesBurned: w.caloriesBurned || 0
+                });
+            });
+            
+            // Filter by exercise
+            if (exerciseFilter !== 'all') {
+                allWorkouts = allWorkouts.filter(w => {
+                    if (w.type === 'manual') {
+                        return w.exercise === exerciseFilter;
+                    } else {
+                        return w.exercises.some(ex => ex.name === exerciseFilter);
+                    }
+                });
+            }
+            
+            // Filter by date
+            if (dateFilter !== 'all') {
+                const cutoffDate = new Date();
+                cutoffDate.setDate(cutoffDate.getDate() - dateFilter);
+                allWorkouts = allWorkouts.filter(w => w.date >= cutoffDate);
+            }
+            
+            // Sort by date (newest first)
+            allWorkouts.sort((a, b) => b.date - a.date);
+            
+            const container = document.getElementById('historyList');
+            const weightUnit = isMetric ? 'kg' : 'lbs';
+            
+            if (allWorkouts.length === 0) {
+                container.innerHTML = '<div class="p-8 text-center text-gray-500">No workouts found matching your filters</div>';
+                return;
+            }
+            
+            container.innerHTML = allWorkouts.map(workout => {
+                if (workout.type === 'manual') {
+                    return `
+                        <div class="p-6 hover:bg-gray-50 transition-colors">
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <h3 class="text-lg font-semibold text-gray-900">${workout.exercise}</h3>
+                                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Manual Entry</span>
+                                    </div>
+                                    <p class="text-gray-600 mb-2">${workout.sets} sets × ${workout.reps} reps @ ${workout.weight} ${weightUnit}</p>
+                                    ${workout.notes ? `<p class="text-sm text-gray-700 italic mb-2">"${workout.notes}"</p>` : ''}
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-calendar mr-1"></i>${workout.date.toLocaleDateString()}</span>
+                                        <span><i class="fas fa-dumbbell mr-1"></i>${Math.round(workout.volume).toLocaleString()} ${weightUnit}</span>
+                                        ${workout.caloriesBurned ? `<span class="calorie-badge">${workout.caloriesBurned} cal</span>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const duration = Math.floor(workout.duration / 60);
+                    const seconds = workout.duration % 60;
+                    return `
+                        <div class="p-6 hover:bg-gray-50 transition-colors">
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <h3 class="text-lg font-semibold text-gray-900">${workout.planName}</h3>
+                                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Workout Plan</span>
+                                    </div>
+                                    <p class="text-gray-600 mb-2">${workout.exercises.length} exercises completed</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                        ${workout.exercises.slice(0, 4).map(ex => `
+                                            <div class="text-sm text-gray-700">
+                                                <span class="font-medium">${ex.name}</span> - ${ex.sets.length} sets
+                                            </div>
+                                        `).join('')}
+                                        ${workout.exercises.length > 4 ? `<div class="text-sm text-gray-500">+${workout.exercises.length - 4} more exercises</div>` : ''}
+                                    </div>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span><i class="fas fa-calendar mr-1"></i>${workout.date.toLocaleDateString()}</span>
+                                        <span><i class="fas fa-clock mr-1"></i>${duration}:${seconds.toString().padStart(2, '0')}</span>
+                                        ${workout.caloriesBurned ? `<span class="calorie-badge">${workout.caloriesBurned} cal</span>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        function displayWorkoutCalendar() {
+            const year = currentCalendarDate.getFullYear();
+            const month = currentCalendarDate.getMonth();
+            
+            // Update month/year display
+            document.getElementById('calendarMonthYear').textContent = 
+                new Date(year, month).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            
+            // Get workout dates
+            const workoutDates = {};
+            
+            // Add manual workouts
+            workouts.forEach(w => {
+                const dateKey = new Date(w.date).toDateString();
+                if (!workoutDates[dateKey]) workoutDates[dateKey] = 0;
+                workoutDates[dateKey]++;
+            });
+            
+            // Add completed workouts
+            completedWorkouts.forEach(w => {
+                const dateKey = new Date(w.date).toDateString();
+                if (!workoutDates[dateKey]) workoutDates[dateKey] = 0;
+                workoutDates[dateKey]++;
+            });
+            
+            // Generate calendar
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+            
+            const calendar = document.getElementById('workoutCalendar');
+            const today = new Date().toDateString();
+            
+            let calendarHTML = '';
+            
+            // Add day headers
+            const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayHeaders.forEach(day => {
+                calendarHTML += `<div class="calendar-header">${day}</div>`;
+            });
+            
+            // Add calendar days
+            const currentDate = new Date(startDate);
+            for (let i = 0; i < 42; i++) {
+                const dateKey = currentDate.toDateString();
+                const workoutCount = workoutDates[dateKey] || 0;
+                const isToday = dateKey === today;
+                const isCurrentMonth = currentDate.getMonth() === month;
+                
+                let classes = 'calendar-day';
+                if (isToday) classes += ' today';
+                if (!isCurrentMonth) classes += ' other-month';
+                if (workoutCount === 1) classes += ' workout-day';
+                if (workoutCount > 1) classes += ' multiple-workouts';
+                
+                calendarHTML += `
+                    <div class="${classes}" onclick="showDayWorkouts('${dateKey}')">
+                        ${currentDate.getDate()}
+                        ${workoutCount > 1 ? `<div style="position: absolute; top: 2px; right: 2px; background: white; border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">${workoutCount}</div>` : ''}
+                    </div>
+                `;
+                
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            calendar.innerHTML = calendarHTML;
+        }
+
+        function changeCalendarMonth(direction) {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + direction);
+            displayWorkoutCalendar();
+        }
+
+        function showDayWorkouts(dateKey) {
+            const dayWorkouts = [
+                ...workouts.filter(w => new Date(w.date).toDateString() === dateKey),
+                ...completedWorkouts.filter(w => new Date(w.date).toDateString() === dateKey)
+            ];
+            
+            if (dayWorkouts.length === 0) return;
+            
+            const date = new Date(dateKey).toLocaleDateString();
+            let message = `Workouts on ${date}:\n\n`;
+            
+            dayWorkouts.forEach(workout => {
+                if (workout.exercise) {
+                    message += `• ${workout.exercise} - ${workout.sets}×${workout.reps}\n`;
+                } else {
+                    message += `• ${workout.planName} (${workout.exercises.length} exercises)\n`;
+                }
+            });
+            
+            alert(message);
+        }
+
+        function updateHistoryFilters() {
+            // Update exercise filter options
+            const exercises = [...new Set([
+                ...workouts.map(w => w.exercise),
+                ...completedWorkouts.flatMap(w => w.exercises.map(e => e.name))
+            ])];
+            
+            const exerciseFilter = document.getElementById('historyExerciseFilter');
+            exerciseFilter.innerHTML = '<option value="all">All Exercises</option>' + 
+                exercises.map(ex => `<option value="${ex}">${ex}</option>`).join('');
+        }
+
+        // Exercise Library Functions
+        function displayExerciseLibrary() {
+            filteredExercises = [...exerciseLibraryData];
+            renderExerciseLibrary();
+        }
+
+        function searchExercises() {
+            const searchTerm = document.getElementById('exerciseSearch').value.toLowerCase();
+            filteredExercises = exerciseLibraryData.filter(exercise => 
+                exercise.name.toLowerCase().includes(searchTerm) ||
+                exercise.muscleGroup.toLowerCase().includes(searchTerm) ||
+                exercise.description.toLowerCase().includes(searchTerm)
+            );
+            applyFilters();
+        }
+
+        function filterExercises() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const muscleGroupFilter = document.getElementById('muscleGroupFilter').value;
+            const equipmentFilter = document.getElementById('equipmentFilter').value;
+            const searchTerm = document.getElementById('exerciseSearch').value.toLowerCase();
+            
+            filteredExercises = exerciseLibraryData.filter(exercise => {
+                const matchesSearch = !searchTerm || 
+                    exercise.name.toLowerCase().includes(searchTerm) ||
+                    exercise.muscleGroup.toLowerCase().includes(searchTerm) ||
+                    exercise.description.toLowerCase().includes(searchTerm);
+                
+                const matchesMuscleGroup = muscleGroupFilter === 'all' || exercise.muscleGroup === muscleGroupFilter;
+                const matchesEquipment = equipmentFilter === 'all' || exercise.equipment === equipmentFilter;
+                
+                return matchesSearch && matchesMuscleGroup && matchesEquipment;
+            });
+            
+            renderExerciseLibrary();
+        }
+
+        function renderExerciseLibrary() {
+            const container = document.getElementById('exerciseLibrary');
+            
+            if (filteredExercises.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">No exercises found</h3>
+                        <p class="text-gray-500">Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filteredExercises.map(exercise => `
+                <div class="exercise-card bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">${exercise.name}</h3>
+                            <div class="flex items-center space-x-2">
+                                <span class="muscle-group-badge muscle-${exercise.muscleGroup}">${exercise.muscleGroup}</span>
+                                <span class="equipment-badge">${exercise.equipment}</span>
+                            </div>
+                        </div>
+                        <button onclick="addExerciseFromLibrary('${exercise.name}')" class="bg-emerald-100 text-emerald-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-emerald-200 transition-colors">
+                            <i class="fas fa-plus mr-1"></i>Add
+                        </button>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-3">${exercise.description}</p>
+                    
+                    <div class="border-t border-gray-200 pt-3">
+                        <h4 class="text-sm font-semibold text-gray-900 mb-2">Instructions:</h4>
+                        <p class="text-sm text-gray-700">${exercise.instructions}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addExerciseFromLibrary(exerciseName) {
+            // Pre-fill the exercise name in the plan creation modal
+            document.getElementById('planExerciseName').value = exerciseName;
+            
+            // Open the create plan modal if not already open
+            if (!document.getElementById('createPlanModal').classList.contains('active')) {
+                openCreatePlanModal();
+            }
+            
+            // Scroll to the exercise input section
+            document.getElementById('planExerciseName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.getElementById('planExerciseName').focus();
+            
+            showNotification(`"${exerciseName}" added to plan form!`, 'success');
+        }
+
+        // Goals Functions
+        function toggleGoalForm() {
+            const form = document.getElementById('goalForm');
+            form.classList.toggle('hidden');
+            
+            if (!form.classList.contains('hidden')) {
+                // Set default target date to 3 months from now
+                const defaultDate = new Date();
+                defaultDate.setMonth(defaultDate.getMonth() + 3);
+                document.getElementById('goalTargetDate').value = defaultDate.toISOString().split('T')[0];
+            }
+        }
+
+        function updateGoalForm() {
+            const goalType = document.getElementById('goalType').value;
+            const dynamicFields = document.getElementById('dynamicGoalFields');
+            const weightUnit = isMetric ? 'kg' : 'lbs';
+            
+            let fieldsHTML = '';
+            
+            switch (goalType) {
+                case 'strength':
+                    fieldsHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Exercise</label>
+                                <input type="text" id="goalExercise" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="e.g., Bench Press" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Target Weight (${weightUnit})</label>
+                                <input type="number" id="goalTargetWeight" step="0.5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="100" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Reps</label>
+                                <input type="number" id="goalTargetReps" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="1" value="1" required>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'endurance':
+                    fieldsHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Activity</label>
+                                <input type="text" id="goalActivity" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="e.g., Running" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Distance/Duration</label>
+                                <input type="text" id="goalDistance" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="e.g., 5km or 30 minutes" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Target Time</label>
+                                <input type="text" id="goalTargetTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="e.g., 25:00">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'weight':
+                    fieldsHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Goal Type</label>
+                                <select id="goalWeightType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                    <option value="lose">Lose Weight</option>
+                                    <option value="gain">Gain Weight</option>
+                                    <option value="maintain">Maintain Weight</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Target Weight (${weightUnit})</label>
+                                <input type="number" id="goalTargetBodyWeight" step="0.1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="70" required>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'frequency':
+                    fieldsHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Workouts per Week</label>
+                                <input type="number" id="goalFrequency" min="1" max="7" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="4" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Duration (weeks)</label>
+                                <input type="number" id="goalDuration" min="1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="12" required>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'custom':
+                    fieldsHTML = `
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Goal Title</label>
+                            <input type="text" id="goalCustomTitle" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" placeholder="e.g., Complete 30-day yoga challenge" required>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            dynamicFields.innerHTML = fieldsHTML;
+        }
+
+        function createGoal(event) {
+            event.preventDefault();
+            
+            const goalType = document.getElementById('goalType').value;
+            const targetDate = document.getElementById('goalTargetDate').value;
+            const description = document.getElementById('goalDescription').value;
+            
+            if (!goalType || !targetDate) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            let goalData = {
+                id: Date.now(),
+                type: goalType,
+                targetDate: targetDate,
+                description: description,
+                createdAt: new Date().toISOString(),
+                status: 'active',
+                progress: 0,
+                completedAt: null
+            };
+            
+            // Add type-specific data
+            switch (goalType) {
+                case 'strength':
+                    goalData.exercise = document.getElementById('goalExercise').value;
+                    goalData.targetWeight = parseFloat(document.getElementById('goalTargetWeight').value);
+                    goalData.targetReps = parseInt(document.getElementById('goalTargetReps').value);
+                    goalData.title = `${goalData.exercise} - ${goalData.targetWeight}${isMetric ? 'kg' : 'lbs'} x ${goalData.targetReps}`;
+                    break;
+                case 'endurance':
+                    goalData.activity = document.getElementById('goalActivity').value;
+                    goalData.distance = document.getElementById('goalDistance').value;
+                    goalData.targetTime = document.getElementById('goalTargetTime').value;
+                    goalData.title = `${goalData.activity} - ${goalData.distance}${goalData.targetTime ? ` in ${goalData.targetTime}` : ''}`;
+                    break;
+                case 'weight':
+                    goalData.weightType = document.getElementById('goalWeightType').value;
+                    goalData.targetBodyWeight = parseFloat(document.getElementById('goalTargetBodyWeight').value);
+                    goalData.title = `${goalData.weightType.charAt(0).toUpperCase() + goalData.weightType.slice(1)} weight to ${goalData.targetBodyWeight}${isMetric ? 'kg' : 'lbs'}`;
+                    break;
+                case 'frequency':
+                    goalData.frequency = parseInt(document.getElementById('goalFrequency').value);
+                    goalData.duration = parseInt(document.getElementById('goalDuration').value);
+                    goalData.title = `Workout ${goalData.frequency} times per week for ${goalData.duration} weeks`;
+                    goalData.currentWeek = 1;
+                    goalData.weeklyProgress = [];
+                    break;
+                case 'custom':
+                    goalData.title = document.getElementById('goalCustomTitle').value;
+                    break;
+            }
+            
+            goals.push(goalData);
+            localStorage.setItem('gymSyncGoals', JSON.stringify(goals));
+            
+            // Reset form
+            document.getElementById('goalForm').classList.add('hidden');
+            document.getElementById('goalType').value = '';
+            document.getElementById('dynamicGoalFields').innerHTML = '';
+            document.getElementById('goalDescription').value = '';
+            
+            displayGoals();
+            updateGoalStats();
+            showNotification('Goal created successfully!', 'success');
+        }
+
+        function displayGoals() {
+            filteredGoals = [...goals];
+            applyGoalFilters();
+        }
+
+        function filterGoals() {
+            applyGoalFilters();
+        }
+
+        function applyGoalFilters() {
+            const statusFilter = document.getElementById('goalStatusFilter').value;
+            const typeFilter = document.getElementById('goalTypeFilter').value;
+            
+            filteredGoals = goals.filter(goal => {
+                const matchesStatus = statusFilter === 'all' || 
+                    (statusFilter === 'overdue' && isGoalOverdue(goal)) ||
+                    (statusFilter !== 'overdue' && goal.status === statusFilter);
+                const matchesType = typeFilter === 'all' || goal.type === typeFilter;
+                
+                return matchesStatus && matchesType;
+            });
+            
+            renderGoals();
+        }
+
+        function renderGoals() {
+            const container = document.getElementById('goalsList');
+            const emptyState = document.getElementById('goalsEmptyState');
+            
+            if (filteredGoals.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            
+            container.innerHTML = filteredGoals.map(goal => {
+                const isOverdue = isGoalOverdue(goal);
+                const status = isOverdue ? 'overdue' : goal.status;
+                const progress = calculateGoalProgress(goal);
+                const daysRemaining = Math.ceil((new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24));
+                
+                return `
+                    <div class="goal-card bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <h3 class="text-lg font-bold text-gray-900">${goal.title}</h3>
+                                    <span class="goal-type-badge type-${goal.type}">${goal.type}</span>
+                                    <span class="goal-status-badge status-${status}">${status}</span>
+                                </div>
+                                ${goal.description ? `<p class="text-gray-600 mb-3">${goal.description}</p>` : ''}
+                                
+                                <!-- Progress Bar -->
+                                <div class="mb-3">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Progress</span>
+                                        <span class="text-sm font-medium text-emerald-600">${Math.round(progress)}%</span>
+                                    </div>
+                                    <div class="goal-progress-bar">
+                                        <div class="goal-progress-fill" style="width: ${Math.min(progress, 100)}%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <span><i class="fas fa-calendar mr-1"></i>Target: ${new Date(goal.targetDate).toLocaleDateString()}</span>
+                                    <span class="${daysRemaining < 0 ? 'text-red-500' : daysRemaining < 7 ? 'text-orange-500' : 'text-gray-500'}">
+                                        <i class="fas fa-clock mr-1"></i>
+                                        ${daysRemaining < 0 ? `${Math.abs(daysRemaining)} days overdue` : `${daysRemaining} days left`}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-2 ml-4">
+                                ${goal.status === 'active' ? `
+                                    <button onclick="updateGoalProgress(${goal.id})" class="bg-emerald-100 text-emerald-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                        <i class="fas fa-plus mr-1"></i>Update
+                                    </button>
+                                ` : ''}
+                                ${goal.status === 'active' && progress >= 100 ? `
+                                    <button onclick="completeGoal(${goal.id})" class="bg-green-100 text-green-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-green-200 transition-colors">
+                                        <i class="fas fa-check mr-1"></i>Complete
+                                    </button>
+                                ` : ''}
+                                <button onclick="deleteGoal(${goal.id})" class="text-red-500 hover:text-red-700 p-2">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        ${renderGoalDetails(goal)}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderGoalDetails(goal) {
+            const weightUnit = isMetric ? 'kg' : 'lbs';
+            
+            switch (goal.type) {
+                case 'strength':
+                    const currentMax = getCurrentMaxWeight(goal.exercise);
+                    return `
+                        <div class="bg-gray-50 rounded-lg p-4 mt-4">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="font-medium text-gray-700">Current Max:</span>
+                                    <span class="text-gray-900">${currentMax} ${weightUnit}</span>
+                                </div>
+                                <div>
+                                    <span class="font-medium text-gray-700">Target:</span>
+                                    <span class="text-gray-900">${goal.targetWeight} ${weightUnit} x ${goal.targetReps}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case 'weight':
+                    const currentWeight = profile.weight || 0;
+                    return `
+                        <div class="bg-gray-50 rounded-lg p-4 mt-4">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="font-medium text-gray-700">Current Weight:</span>
+                                    <span class="text-gray-900">${currentWeight} ${weightUnit}</span>
+                                </div>
+                                <div>
+                                    <span class="font-medium text-gray-700">Target Weight:</span>
+                                    <span class="text-gray-900">${goal.targetBodyWeight} ${weightUnit}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case 'frequency':
+                    const weeksPassed = Math.floor((new Date() - new Date(goal.createdAt)) / (1000 * 60 * 60 * 24 * 7));
+                    const currentWeekWorkouts = getCurrentWeekWorkouts();
+                    return `
+                        <div class="bg-gray-50 rounded-lg p-4 mt-4">
+                            <div class="grid grid-cols-3 gap-4 text-sm">
+                                <div>
+                                    <span class="font-medium text-gray-700">Week:</span>
+                                    <span class="text-gray-900">${Math.min(weeksPassed + 1, goal.duration)} / ${goal.duration}</span>
+                                </div>
+                                <div>
+                                    <span class="font-medium text-gray-700">This Week:</span>
+                                    <span class="text-gray-900">${currentWeekWorkouts} / ${goal.frequency}</span>
+                                </div>
+                                <div>
+                                    <span class="font-medium text-gray-700">Target:</span>
+                                    <span class="text-gray-900">${goal.frequency}x/week</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                default:
+                    return '';
+            }
+        }
+
+        function calculateGoalProgress(goal) {
+            switch (goal.type) {
+                case 'strength':
+                    const currentMax = getCurrentMaxWeight(goal.exercise);
+                    return Math.min((currentMax / goal.targetWeight) * 100, 100);
+                case 'weight':
+                    if (!profile.weight) return 0;
+                    const currentWeight = profile.weight;
+                    const startWeight = goal.startWeight || currentWeight;
+                    const targetWeight = goal.targetBodyWeight;
+                    
+                    if (goal.weightType === 'lose') {
+                        const totalToLose = startWeight - targetWeight;
+                        const lostSoFar = startWeight - currentWeight;
+                        return Math.min((lostSoFar / totalToLose) * 100, 100);
+                    } else if (goal.weightType === 'gain') {
+                        const totalToGain = targetWeight - startWeight;
+                        const gainedSoFar = currentWeight - startWeight;
+                        return Math.min((gainedSoFar / totalToGain) * 100, 100);
+                    }
+                    return currentWeight === targetWeight ? 100 : 0;
+                case 'frequency':
+                    const weeksPassed = Math.floor((new Date() - new Date(goal.createdAt)) / (1000 * 60 * 60 * 24 * 7));
+                    const totalWeeks = goal.duration;
+                    const completedWeeks = Math.min(weeksPassed, totalWeeks);
+                    return (completedWeeks / totalWeeks) * 100;
+                case 'custom':
+                    return goal.progress || 0;
+                default:
+                    return 0;
+            }
+        }
+
+        function getCurrentMaxWeight(exercise) {
+            let maxWeight = 0;
+            
+            // Check manual workouts
+            workouts.forEach(w => {
+                if (w.exercise.toLowerCase() === exercise.toLowerCase() && w.weight > maxWeight) {
+                    maxWeight = w.weight;
+                }
+            });
+            
+            // Check completed workout plans
+            completedWorkouts.forEach(workout => {
+                workout.exercises.forEach(ex => {
+                    if (ex.name.toLowerCase() === exercise.toLowerCase()) {
+                        ex.sets.forEach(set => {
+                            if (set.weight > maxWeight) {
+                                maxWeight = set.weight;
+                            }
+                        });
+                    }
+                });
+            });
+            
+            return maxWeight;
+        }
+
+        function getCurrentWeekWorkouts() {
+            const now = new Date();
+            const startOfWeek = new Date(now);
+            startOfWeek.setDate(now.getDate() - now.getDay());
+            startOfWeek.setHours(0, 0, 0, 0);
+            
+            const thisWeekWorkouts = [
+                ...workouts.filter(w => new Date(w.date) >= startOfWeek),
+                ...completedWorkouts.filter(w => new Date(w.date) >= startOfWeek)
+            ];
+            
+            return thisWeekWorkouts.length;
+        }
+
+        function isGoalOverdue(goal) {
+            return goal.status === 'active' && new Date(goal.targetDate) < new Date();
+        }
+
+        function updateGoalProgress(goalId) {
+            const goal = goals.find(g => g.id === goalId);
+            if (!goal) return;
+            
+            if (goal.type === 'custom') {
+                const newProgress = prompt(`Update progress for "${goal.title}" (0-100%):`, goal.progress || 0);
+                if (newProgress !== null) {
+                    const progress = Math.max(0, Math.min(100, parseFloat(newProgress) || 0));
+                    goal.progress = progress;
+                    localStorage.setItem('gymSyncGoals', JSON.stringify(goals));
+                    displayGoals();
+                    updateGoalStats();
+                    showNotification('Goal progress updated!', 'success');
+                }
+            } else {
+                showNotification('Progress is automatically tracked based on your workouts!', 'info');
+            }
+        }
+
+        function completeGoal(goalId) {
+            const goal = goals.find(g => g.id === goalId);
+            if (!goal) return;
+            
+            if (confirm(`Mark "${goal.title}" as completed?`)) {
+                goal.status = 'completed';
+                goal.completedAt = new Date().toISOString();
+                goal.progress = 100;
+                
+                localStorage.setItem('gymSyncGoals', JSON.stringify(goals));
+                displayGoals();
+                updateGoalStats();
+                showNotification('Congratulations! Goal completed! 🎉', 'success');
+            }
+        }
+
+        function deleteGoal(goalId) {
+            if (confirm('Are you sure you want to delete this goal?')) {
+                goals = goals.filter(g => g.id !== goalId);
+                localStorage.setItem('gymSyncGoals', JSON.stringify(goals));
+                displayGoals();
+                updateGoalStats();
+                showNotification('Goal deleted', 'info');
+            }
+        }
+
+        function updateGoalStats() {
+            const activeGoals = goals.filter(g => g.status === 'active' && !isGoalOverdue(g));
+            const completedGoals = goals.filter(g => g.status === 'completed');
+            const totalGoals = goals.length;
+            const successRate = totalGoals > 0 ? Math.round((completedGoals.length / totalGoals) * 100) : 0;
+            
+            // Calculate goal streak (consecutive completed goals)
+            let streak = 0;
+            const sortedGoals = [...goals].sort((a, b) => new Date(b.completedAt || 0) - new Date(a.completedAt || 0));
+            for (const goal of sortedGoals) {
+                if (goal.status === 'completed') {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+            
+            document.getElementById('activeGoalsCount').textContent = activeGoals.length;
+            document.getElementById('completedGoalsCount').textContent = completedGoals.length;
+            document.getElementById('successRate').textContent = successRate + '%';
+            document.getElementById('goalStreak').textContent = streak;
+        }
+
+        // Progress Photos Functions
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Validate file size (5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('Photo size must be less than 5MB', 'error');
+                return;
+            }
+            
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please select a valid image file', 'error');
+                return;
+            }
+            
+            currentPhotoFile = file;
+            
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('previewImage').src = e.target.result;
+                document.getElementById('photoPreview').classList.remove('hidden');
+                document.getElementById('photoDetailsForm').classList.remove('hidden');
+                
+                // Set default date to today
+                document.getElementById('photoDate').value = new Date().toISOString().split('T')[0];
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function cancelPhotoUpload() {
+            currentPhotoFile = null;
+            document.getElementById('photoInput').value = '';
+            document.getElementById('photoPreview').classList.add('hidden');
+            document.getElementById('photoDetailsForm').classList.add('hidden');
+            document.getElementById('photoDate').value = '';
+            document.getElementById('photoType').value = '';
+            document.getElementById('photoWeight').value = '';
+            document.getElementById('photoNotes').value = '';
+        }
+
+        function saveProgressPhoto(event) {
+            event.preventDefault();
+            
+            if (!currentPhotoFile) {
+                showNotification('Please select a photo first', 'error');
+                return;
+            }
+            
+            const photoDate = document.getElementById('photoDate').value;
+            const photoType = document.getElementById('photoType').value;
+            const photoWeight = parseFloat(document.getElementById('photoWeight').value) || null;
+            const photoNotes = document.getElementById('photoNotes').value;
+            
+            if (!photoDate || !photoType) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            // Convert image to base64 for storage
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const photoData = {
+                    id: Date.now(),
+                    date: photoDate,
+                    type: photoType,
+                    weight: photoWeight,
+                    notes: photoNotes,
+                    imageData: e.target.result,
+                    createdAt: new Date().toISOString()
+                };
+                
+                progressPhotos.push(photoData);
+                localStorage.setItem('gymSyncProgressPhotos', JSON.stringify(progressPhotos));
+                
+                // Reset form
+                cancelPhotoUpload();
+                
+                // Refresh display
+                displayProgressPhotos();
+                
+                showNotification('Progress photo saved successfully!', 'success');
+            };
+            reader.readAsDataURL(currentPhotoFile);
+        }
+
+        function switchPhotoView(view) {
+            currentPhotoView = view;
+            
+            // Update button states
+            document.getElementById('timelineViewBtn').className = view === 'timeline' ? 
+                'px-4 py-2 bg-emerald-500 text-white font-medium text-sm transition-colors' :
+                'px-4 py-2 bg-gray-100 text-gray-700 font-medium text-sm transition-colors';
+            document.getElementById('comparisonViewBtn').className = view === 'comparison' ? 
+                'px-4 py-2 bg-emerald-500 text-white font-medium text-sm transition-colors' :
+                'px-4 py-2 bg-gray-100 text-gray-700 font-medium text-sm transition-colors';
+            document.getElementById('gridViewBtn').className = view === 'grid' ? 
+                'px-4 py-2 bg-emerald-500 text-white font-medium text-sm transition-colors' :
+                'px-4 py-2 bg-gray-100 text-gray-700 font-medium text-sm transition-colors';
+            
+            // Show/hide views
+            document.getElementById('timelineView').classList.toggle('hidden', view !== 'timeline');
+            document.getElementById('comparisonView').classList.toggle('hidden', view !== 'comparison');
+            document.getElementById('gridView').classList.toggle('hidden', view !== 'grid');
+            
+            // Load view content
+            if (view === 'timeline') {
+                displayPhotoTimeline();
+            } else if (view === 'comparison') {
+                displayPhotoComparison();
+            } else if (view === 'grid') {
+                displayPhotoGrid();
+            }
+        }
+
+        function filterPhotos() {
+            const typeFilter = document.getElementById('photoTypeFilter').value;
+            
+            filteredPhotos = progressPhotos.filter(photo => {
+                return typeFilter === 'all' || photo.type === typeFilter;
+            });
+            
+            // Refresh current view
+            if (currentPhotoView === 'timeline') {
+                displayPhotoTimeline();
+            } else if (currentPhotoView === 'comparison') {
+                displayPhotoComparison();
+            } else if (currentPhotoView === 'grid') {
+                displayPhotoGrid();
+            }
+        }
+
+        function displayProgressPhotos() {
+            filteredPhotos = [...progressPhotos];
+            
+            if (progressPhotos.length === 0) {
+                document.getElementById('photosEmptyState').classList.remove('hidden');
+                document.getElementById('timelineView').classList.add('hidden');
+                document.getElementById('comparisonView').classList.add('hidden');
+                document.getElementById('gridView').classList.add('hidden');
+                return;
+            }
+            
+            document.getElementById('photosEmptyState').classList.add('hidden');
+            switchPhotoView(currentPhotoView);
+        }
+
+        function displayPhotoTimeline() {
+            const container = document.getElementById('photoTimeline');
+            const weightUnit = isMetric ? 'kg' : 'lbs';
+            
+            if (filteredPhotos.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No photos match your current filter</div>';
+                return;
+            }
+            
+            // Sort photos by date (newest first)
+            const sortedPhotos = [...filteredPhotos].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            container.innerHTML = sortedPhotos.map((photo, index) => `
+                <div class="timeline-item mb-8">
+                    <div class="timeline-dot"></div>
+                    <div class="photo-card bg-gray-50 rounded-xl p-6">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-1/3">
+                                <img src="${photo.imageData}" alt="Progress Photo" class="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity" onclick="openPhotoOverlay('${photo.imageData}')">
+                            </div>
+                            <div class="md:w-2/3">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center space-x-3">
+                                        <h3 class="text-lg font-bold text-gray-900">${new Date(photo.date).toLocaleDateString()}</h3>
+                                        <span class="photo-type-badge type-${photo.type}">${photo.type}</span>
+                                    </div>
+                                    <button onclick="deletePhoto(${photo.id})" class="text-red-500 hover:text-red-700 p-2">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                
+                                ${photo.weight ? `
+                                    <div class="mb-3">
+                                        <span class="text-sm font-medium text-gray-700">Weight: </span>
+                                        <span class="text-sm text-gray-900">${photo.weight} ${weightUnit}</span>
+                                    </div>
+                                ` : ''}
+                                
+                                ${photo.notes ? `
+                                    <div class="mb-3">
+                                        <span class="text-sm font-medium text-gray-700">Notes: </span>
+                                        <p class="text-sm text-gray-900 mt-1">${photo.notes}</p>
+                                    </div>
+                                ` : ''}
+                                
+                                <div class="text-xs text-gray-500">
+                                    Added ${new Date(photo.createdAt).toLocaleDateString()}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayPhotoComparison() {
+            const container = document.getElementById('photoComparison');
+            const beforeSelect = document.getElementById('beforePhotoSelect');
+            const afterSelect = document.getElementById('afterPhotoSelect');
+            
+            // Populate photo selectors
+            const photoOptions = filteredPhotos
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .map(photo => `<option value="${photo.id}">${new Date(photo.date).toLocaleDateString()} - ${photo.type}</option>`)
+                .join('');
+            
+            beforeSelect.innerHTML = '<option value="">Select photo...</option>' + photoOptions;
+            afterSelect.innerHTML = '<option value="">Select photo...</option>' + photoOptions;
+            
+            if (filteredPhotos.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No photos available for comparison</div>';
+                return;
+            }
+            
+            if (filteredPhotos.length < 2) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">Add more photos to enable comparison view</div>';
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-columns text-4xl mb-4"></i>
+                    <p>Select two photos above to compare your progress</p>
+                </div>
+            `;
+        }
+
+        function updateComparison() {
+            const beforeId = document.getElementById('beforePhotoSelect').value;
+            const afterId = document.getElementById('afterPhotoSelect').value;
+            const container = document.getElementById('photoComparison');
+            const weightUnit = isMetric ? 'kg' : 'lbs';
+            
+            if (!beforeId || !afterId) return;
+            
+            const beforePhoto = progressPhotos.find(p => p.id == beforeId);
+            const afterPhoto = progressPhotos.find(p => p.id == afterId);
+            
+            if (!beforePhoto || !afterPhoto) return;
+            
+            const weightChange = beforePhoto.weight && afterPhoto.weight ? 
+                (afterPhoto.weight - beforePhoto.weight).toFixed(1) : null;
+            
+            const daysDiff = Math.abs(new Date(afterPhoto.date) - new Date(beforePhoto.date)) / (1000 * 60 * 60 * 24);
+            
+            container.innerHTML = `
+                <div class="photo-comparison-container">
+                    <div class="text-center">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Before</h4>
+                        <img src="${beforePhoto.imageData}" alt="Before Photo" class="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity" onclick="openPhotoOverlay('${beforePhoto.imageData}')">
+                        <div class="mt-4 space-y-2">
+                            <div class="text-sm text-gray-600">${new Date(beforePhoto.date).toLocaleDateString()}</div>
+                            ${beforePhoto.weight ? `<div class="text-sm text-gray-900 font-medium">${beforePhoto.weight} ${weightUnit}</div>` : ''}
+                            <span class="photo-type-badge type-${beforePhoto.type}">${beforePhoto.type}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">After</h4>
+                        <img src="${afterPhoto.imageData}" alt="After Photo" class="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity" onclick="openPhotoOverlay('${afterPhoto.imageData}')">
+                        <div class="mt-4 space-y-2">
+                            <div class="text-sm text-gray-600">${new Date(afterPhoto.date).toLocaleDateString()}</div>
+                            ${afterPhoto.weight ? `<div class="text-sm text-gray-900 font-medium">${afterPhoto.weight} ${weightUnit}</div>` : ''}
+                            <span class="photo-type-badge type-${afterPhoto.type}">${afterPhoto.type}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-emerald-50 rounded-lg p-6">
+                    <h5 class="text-lg font-semibold text-emerald-900 mb-4">Progress Summary</h5>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-emerald-600">${Math.round(daysDiff)}</div>
+                            <div class="text-sm text-emerald-700">Days Apart</div>
+                        </div>
+                        ${weightChange ? `
+                            <div>
+                                <div class="text-2xl font-bold ${weightChange > 0 ? 'text-blue-600' : 'text-red-600'}">${weightChange > 0 ? '+' : ''}${weightChange} ${weightUnit}</div>
+                                <div class="text-sm text-gray-700">Weight Change</div>
+                            </div>
+                        ` : '<div></div>'}
+                        <div>
+                            <div class="text-2xl font-bold text-purple-600"><i class="fas fa-trophy"></i></div>
+                            <div class="text-sm text-purple-700">Keep Going!</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayPhotoGrid() {
+            const container = document.getElementById('photoGrid');
+            const weightUnit = isMetric ? 'kg' : 'lbs';
+            
+            if (filteredPhotos.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No photos match your current filter</div>';
+                return;
+            }
+            
+            // Sort photos by date (newest first)
+            const sortedPhotos = [...filteredPhotos].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    ${sortedPhotos.map(photo => `
+                        <div class="photo-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="relative">
+                                <img src="${photo.imageData}" alt="Progress Photo" class="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity" onclick="openPhotoOverlay('${photo.imageData}')">
+                                <button onclick="deletePhoto(${photo.id})" class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-600 transition-colors">
+                                    <i class="fas fa-trash text-xs"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="text-sm font-medium text-gray-900">${new Date(photo.date).toLocaleDateString()}</div>
+                                    <span class="photo-type-badge type-${photo.type}">${photo.type}</span>
+                                </div>
+                                ${photo.weight ? `
+                                    <div class="text-sm text-gray-600 mb-2">${photo.weight} ${weightUnit}</div>
+                                ` : ''}
+                                ${photo.notes ? `
+                                    <div class="text-xs text-gray-500 truncate" title="${photo.notes}">${photo.notes}</div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function openPhotoOverlay(imageData) {
+            document.getElementById('overlayImage').src = imageData;
+            document.getElementById('photoOverlay').classList.add('active');
+        }
+
+        function closePhotoOverlay() {
+            document.getElementById('photoOverlay').classList.remove('active');
+        }
+
+        function deletePhoto(photoId) {
+            if (confirm('Are you sure you want to delete this progress photo?')) {
+                progressPhotos = progressPhotos.filter(p => p.id !== photoId);
+                localStorage.setItem('gymSyncProgressPhotos', JSON.stringify(progressPhotos));
+                displayProgressPhotos();
+                showNotification('Progress photo deleted', 'info');
+            }
+        }
+
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
             updateUnitLabels();
@@ -1344,6 +3296,12 @@
             updateRecentWorkouts();
             updateStatistics();
             displayWorkoutPlans();
+            displayHomeWorkoutPlans();
+            displayExerciseLibrary();
+            updateHistoryFilters();
+            displayGoals();
+            updateGoalStats();
+            displayProgressPhotos();
             showPage('home');
         });
 
@@ -1378,6 +3336,20 @@
                 updateProfileStats();
             } else if (pageId === 'plans') {
                 displayWorkoutPlans();
+            } else if (pageId === 'history') {
+                updateHistoryFilters();
+                if (currentHistoryView === 'list') {
+                    displayHistoryList();
+                } else {
+                    displayWorkoutCalendar();
+                }
+            } else if (pageId === 'exercises') {
+                displayExerciseLibrary();
+            } else if (pageId === 'goals') {
+                displayGoals();
+                updateGoalStats();
+            } else if (pageId === 'photos') {
+                displayProgressPhotos();
             }
         }
 
@@ -1385,6 +3357,27 @@
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
+
+        // Progress Dropdown Functions
+        function toggleProgressDropdown() {
+            const menu = document.getElementById('progressDropdownMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function closeProgressDropdown() {
+            const menu = document.getElementById('progressDropdownMenu');
+            menu.classList.add('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('progressDropdown');
+            const menu = document.getElementById('progressDropdownMenu');
+            
+            if (dropdown && !dropdown.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
 
         // Workout Timer Functions
         function startWorkout(plan) {
@@ -1595,6 +3588,7 @@
             if (plan) {
                 plan.timesUsed++;
                 localStorage.setItem('gymSyncWorkoutPlans', JSON.stringify(workoutPlans));
+                displayHomeWorkoutPlans(); // Refresh home display to show updated usage
             }
             
             // Hide overlay
@@ -1748,6 +3742,7 @@
             
             closeCreatePlanModal();
             displayWorkoutPlans();
+            displayHomeWorkoutPlans();
             showNotification('Workout plan created successfully!', 'success');
         }
 
@@ -1805,6 +3800,72 @@
             `).join('');
         }
 
+        function displayHomeWorkoutPlans() {
+            const container = document.getElementById('homeWorkoutPlans');
+            
+            if (workoutPlans.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-clipboard-list text-3xl text-emerald-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Ready to start your fitness journey?</h3>
+                        <p class="text-gray-600 mb-6">Create your first workout plan to get organized and track your progress</p>
+                        <button onclick="openCreatePlanModal()" class="accent-gradient text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                            <i class="fas fa-plus mr-2"></i>Create Your First Plan
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show up to 3 most recently used plans
+            const recentPlans = workoutPlans
+                .sort((a, b) => (b.timesUsed || 0) - (a.timesUsed || 0))
+                .slice(0, 3);
+            
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    ${recentPlans.map(plan => `
+                        <div class="plan-card bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200 rounded-xl p-4 hover-lift">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900 mb-1">${plan.name}</h3>
+                                    <span class="category-badge category-${plan.category.toLowerCase()}">${plan.category}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-1 mb-4">
+                                ${plan.exercises.slice(0, 2).map(exercise => `
+                                    <div class="text-sm text-gray-700">
+                                        <span class="font-medium">${exercise.name}</span> - ${exercise.sets}×${exercise.reps}
+                                    </div>
+                                `).join('')}
+                                ${plan.exercises.length > 2 ? `<div class="text-xs text-gray-500">+${plan.exercises.length - 2} more exercises</div>` : ''}
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="text-xs text-gray-600">
+                                    <i class="fas fa-clock mr-1"></i>~${plan.exercises.reduce((total, ex) => total + (ex.sets * 2) + (ex.rest / 60), 0).toFixed(0)} min
+                                </div>
+                                <button onclick="usePlan(${plan.id})" class="accent-gradient text-white px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                                    <i class="fas fa-play mr-1"></i>Start
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                ${workoutPlans.length > 3 ? `
+                    <div class="text-center mt-6">
+                        <button onclick="showPage('plans')" class="text-emerald-600 hover:text-emerald-700 font-medium text-sm">
+                            View all ${workoutPlans.length} plans <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                ` : ''}
+            `;
+        }
+
         function usePlan(planId) {
             const plan = workoutPlans.find(p => p.id === planId);
             if (!plan || plan.exercises.length === 0) return;
@@ -1820,6 +3881,7 @@
                 workoutPlans = workoutPlans.filter(p => p.id !== planId);
                 localStorage.setItem('gymSyncWorkoutPlans', JSON.stringify(workoutPlans));
                 displayWorkoutPlans();
+                displayHomeWorkoutPlans();
                 showNotification('Workout plan deleted', 'info');
             }
         }
@@ -2314,5 +4376,5 @@
             }, 3000);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9731fba8c5c056c4',t:'MTc1NTg2MTY0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9735e72774f356a4',t:'MTc1NTkwMjc1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
